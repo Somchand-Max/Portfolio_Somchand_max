@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Streamlit cloud deployment wrapper for Somchand Ratangwal's portfolio.
 
-Combines the public portfolio preview and hardened Excel contact backend with
-a discrete, brute-force-protected Admin Authentication & Message Dashboard.
+Connects the portfolio showcase, direct native Excel contact backend, and a
+restored brute-force-hardened Admin Authentication & Message Dashboard.
 """
 
 from __future__ import annotations
@@ -18,7 +18,6 @@ import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 import pandas as pd
 import streamlit as st
@@ -38,10 +37,24 @@ from server import (
 
 ASSET_ATTR_RE = re.compile(r'(src|href)="(assets/[^"]+)"')
 ASSET_JS_RE = re.compile(r"'(assets/[^']+)'")
+CONTACT_FORM_BLOCK_RE = re.compile(
+    r"<!-- CONTACT_FORM_START -->.*?<!-- CONTACT_FORM_END -->", re.DOTALL
+)
 
 DEFAULT_ADMIN_EMAIL = "somchandratangwal7@gmail.com"
 ADMIN_MAX_FAILED_ATTEMPTS = 5
 ADMIN_LOCKOUT_SECONDS = 15 * 60  # 15 minutes
+
+STREAMLIT_CONTACT_BRIDGE_HTML = """
+<div class="card contact-form" id="streamlit-contact-callout">
+  <h3>Send a Message Directly</h3>
+  <p class="form-note">
+    Running on Streamlit Cloud / App backend: use the interactive
+    <strong>Direct Message Form immediately below this showcase</strong> (or open the
+    <strong>Contact Form</strong> tab) to submit directly to the hardened Excel inbox.
+  </p>
+</div>
+""".strip()
 
 
 class AdminLoginRateLimiter:
@@ -239,6 +252,15 @@ def build_standalone_portfolio_html(root_str: str = str(BASE_DIR)) -> str:
         (root / "js" / "script.js").read_text(encoding="utf-8"),
     ).replace("</script>", "<\\/script>")
 
+    # Replace the static server.py fetch('/api/contact') form only inside the Streamlit bundle
+    # so visitors submit directly via the native Streamlit form below without CORS/404 errors.
+    html_text = CONTACT_FORM_BLOCK_RE.sub(STREAMLIT_CONTACT_BRIDGE_HTML, html_text)
+    html_text = html_text.replace(
+        '<a href="#home" class="back-top-link">Back to top &uarr;</a>',
+        '<a href="?admin=true" target="_top" class="back-top-link">🔒 Admin Portal</a> '
+        '<a href="#home" class="back-top-link">Back to top &uarr;</a>',
+    )
+
     html_text = html_text.replace(
         '<script src="js/theme-init.js"></script>',
         f"<script>{theme_js}</script>",
@@ -310,9 +332,13 @@ def _render_admin_login_form(
     """Render the brute-force-protected Admin login form."""
     configured_email, password_hash, password_plain = resolve_admin_credentials()
     if not password_hash and not password_plain:
-        st.info(
-            "Admin authentication is locked until `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH` "
-            "is set in Streamlit Cloud Secrets or environment variables."
+        st.warning(
+            "Admin Portal is configured in fail-closed mode because no password secret is set yet."
+        )
+        st.caption(
+            "In Streamlit Community Cloud (**App Settings -> Secrets**), add:\n"
+            '```toml\nADMIN_EMAIL = "somchandratangwal7@gmail.com"\n'
+            'ADMIN_PASSWORD = "your-private-password"\n```'
         )
         return
 
@@ -328,6 +354,7 @@ def _render_admin_login_form(
         entered_email = st.text_input(
             "Admin Email",
             key=f"{key_prefix}_admin_email",
+            value="",
             placeholder="somchandratangwal7@gmail.com",
         )
         entered_password = st.text_input(
@@ -383,7 +410,7 @@ def _render_admin_dashboard() -> None:
             "admin_email_verified", DEFAULT_ADMIN_EMAIL
         )
         st.caption(
-            f"Signed in as `{verified_email}` • Live encrypted/permission-restricted storage: `data/contact_messages.xlsx`"
+            f"Signed in as `{verified_email}` • Hardened Excel inbox: `data/contact_messages.xlsx`"
         )
     with logout_col:
         if st.button("Log Out", key="dashboard_logout_btn", type="secondary"):
@@ -432,32 +459,43 @@ def _render_admin_dashboard() -> None:
         st.dataframe(display_df, width="stretch", hide_index=True)
 
 
-def _render_contact_tab(limiter: SlidingWindowRateLimiter) -> None:
-    """Render the hardened contact form wired to `process_contact_submission`."""
+def _render_contact_section(
+    limiter: SlidingWindowRateLimiter, *, key_prefix: str
+) -> None:
+    """Render native Streamlit contact form saving directly to `data/contact_messages.xlsx`."""
     st.subheader("Send a Direct Message")
     st.caption(
-        "Validated on the backend with length limits, XSS escaping, CSV/Excel formula neutralization, "
-        "CSRF session binding, and a 3 messages / 15 min rate limit."
+        "Validated in Python with length limits, XSS escaping, CSV/Excel formula neutralization, "
+        "CSRF session binding, and a 3 messages / 15 min rate limit — saved directly to Excel."
     )
 
     if "contact_csrf_nonce" not in st.session_state:
         st.session_state["contact_csrf_nonce"] = secrets.token_urlsafe(24)
 
+    success_key = f"{key_prefix}_contact_success"
+    if success_key in st.session_state:
+        st.success(st.session_state.pop(success_key))
+
+    ver_key = f"{key_prefix}_form_ver"
+    form_ver = int(st.session_state.get(ver_key, 0))
     expected_nonce = st.session_state["contact_csrf_nonce"]
 
-    with st.form("hardened_contact_form", clear_on_submit=True):
+    with st.form(f"{key_prefix}_hardened_contact_form_{form_ver}", clear_on_submit=False):
         sender_name = st.text_input(
             "Full Name",
+            key=f"{key_prefix}_name_{form_ver}",
             max_chars=NAME_MAX_LENGTH,
             placeholder="Your full name (max 80 chars)",
         )
         sender_email = st.text_input(
             "Email Address",
+            key=f"{key_prefix}_email_{form_ver}",
             max_chars=EMAIL_MAX_LENGTH,
             placeholder="you@example.com (max 120 chars)",
         )
         sender_message = st.text_area(
             "Message",
+            key=f"{key_prefix}_message_{form_ver}",
             max_chars=MESSAGE_MAX_LENGTH,
             height=140,
             placeholder="Write your message here (10 to 500 characters)...",
@@ -495,9 +533,11 @@ def _render_contact_tab(limiter: SlidingWindowRateLimiter) -> None:
     )
 
     if status_code == 200 and response.get("success"):
-        st.success(
-            "Message sent successfully! Your inquiry has been sanitized and logged to Excel."
+        st.session_state[success_key] = (
+            "Message sent successfully! Som will get back to you shortly."
         )
+        st.session_state[ver_key] = form_ver + 1
+        st.rerun()
     else:
         st.error(response.get("error", "Unable to record your message."))
 
@@ -512,7 +552,7 @@ def _is_admin_query_requested() -> bool:
 
 
 def main() -> None:
-    """Configure page metadata and render public portfolio or Admin Portal."""
+    """Configure page metadata and render public portfolio + Admin Portal."""
     st.set_page_config(
         page_title="Somchand Ratangwal | Cybersecurity & AI Portfolio",
         page_icon="🛡️",
@@ -527,15 +567,13 @@ def main() -> None:
     admin_query = _is_admin_query_requested()
 
     with st.sidebar:
-        with st.expander("🔒 Admin Portal", expanded=is_admin):
+        with st.expander("🔒 Admin Portal", expanded=True):
             if is_admin:
                 st.success(
                     f"Authenticated: {st.session_state.get('admin_email_verified', DEFAULT_ADMIN_EMAIL)}"
                 )
                 if st.button("Log Out", key="sidebar_logout_btn"):
                     _logout_admin()
-            elif admin_query:
-                st.caption("Admin login form is open in the main view.")
             else:
                 _render_admin_login_form(login_limiter, key_prefix="sidebar")
 
@@ -556,8 +594,8 @@ def main() -> None:
             st.rerun()
         return
 
-    tab_portfolio, tab_contact = st.tabs(
-        ["Portfolio Website", "Contact Form (Excel Backend)"]
+    tab_portfolio, tab_contact, tab_admin = st.tabs(
+        ["🌐 Portfolio Website", "✉️ Contact Form", "🔒 Admin Portal"]
     )
 
     with tab_portfolio:
@@ -569,8 +607,16 @@ def main() -> None:
 
             components.html(embedded_html, height=1100, scrolling=True)
 
+        st.divider()
+        _render_contact_section(contact_limiter, key_prefix="portfolio")
+
     with tab_contact:
-        _render_contact_tab(contact_limiter)
+        _render_contact_section(contact_limiter, key_prefix="tab")
+
+    with tab_admin:
+        st.subheader("🔒 Admin Portal Login")
+        st.caption("Sign in with administrator credentials to view & download contact submissions.")
+        _render_admin_login_form(login_limiter, key_prefix="tab_admin")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Portfolio Website of Somchand Ratangwal — Cybersecurity & AI Enthusiast preparing for the Joint IIT Madras & IIT Kanpur 4-Year Bachelor of Cybersecurity (B.Cyber.) 2027 program.">
+  <title>Somchand Ratangwal | Cybersecurity &amp; AI Portfolio</title>
+
+  <!-- Google Fonts (with graceful system fallbacks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Prevent theme flash before first paint -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Feature 10: Interactive Navigation + Feature 9: Dark/Light Mode Switcher -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="brand" aria-label="Somchand Ratangwal Home">
+        <span class="brand-code">&lt;/&gt;</span>
+        <span class="brand-name">Somchand</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+          <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+          <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+          <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+          <li><a href="#hobbies" class="nav-link" data-section="hobbies">Hobbies</a></li>
+          <li><a href="#achievements" class="nav-link" data-section="achievements">Achievements</a></li>
+          <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Switch to Light Mode"
+          aria-pressed="false"
+          title="Toggle Dark / Light Mode"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span class="theme-label" id="theme-label">Light</span>
+        </button>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Feature 1: Home Section -->
+    <section id="home" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Preparing for Joint IIT Madras &amp; IIT Kanpur B.Cyber. 2027 (4-Year Degree)</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I&apos;m <span class="gradient-text">Somchand Ratangwal</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Cybersecurity &amp; AI Aspirant preparing for the
+            <strong>Joint IIT Madras &amp; IIT Kanpur Bachelor of Cybersecurity (B.Cyber.) 2027</strong>
+            4-Year Degree Program.
+          </p>
+
+          <p class="hero-welcome">
+            Welcome to my digital portfolio! Explore my academic journey, verified certifications from
+            HarvardX, Columbia Engineering, and IIT Madras, technical projects, and security research.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#about" class="btn btn-primary">
+              <span>About Me</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span>View Projects</span>
+            </a>
+            <a href="#achievements" class="btn btn-outline">
+              <span>Achievements (8)</span>
+            </a>
+            <button type="button" class="btn btn-ghost" id="open-resume-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>View Resume</span>
+            </button>
+          </div>
+
+          <div class="hero-metrics" aria-label="Profile Highlights">
+            <div class="metric-card">
+              <span class="metric-value">8</span>
+              <span class="metric-label">Verified Certificates</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">96%</span>
+              <span class="metric-label">IITM Pravartak Top Score</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">4+ Yrs</span>
+              <span class="metric-label">Financial Analytics Exposure</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="profile-frame">
+            <div class="profile-glow" aria-hidden="true"></div>
+            <img
+              src="assets/images/profile.png"
+              alt="Portrait of Somchand Ratangwal"
+              class="profile-avatar"
+              width="800"
+              height="800"
+            >
+            <div class="floating-pill pill-top">
+              <span class="mono-tag">B.Cyber &apos;27</span>
+              <span>Bengaluru, IN</span>
+            </div>
+            <div class="floating-pill pill-bottom">
+              <span class="shield-dot" aria-hidden="true"></span>
+              <span>Ethical Security &amp; AI</span>
+            </div>
+          </div>
+
+          <div class="terminal-card" aria-label="Quick Developer Summary">
+            <div class="terminal-header">
+              <span class="dot red"></span>
+              <span class="dot amber"></span>
+              <span class="dot green"></span>
+              <span class="terminal-title">whoami.sh</span>
+            </div>
+            <pre class="terminal-body"><code><span class="t-cmd">$ cat profile.json</span>
+{
+  <span class="t-key">"name"</span>: <span class="t-str">"Somchand Ratangwal"</span>,
+  <span class="t-key">"focus"</span>: [<span class="t-str">"Cybersecurity"</span>, <span class="t-str">"AI"</span>, <span class="t-str">"Web UI"</span>],
+  <span class="t-key">"tools"</span>: [<span class="t-str">"HTML5 / CSS3"</span>, <span class="t-str">"AI Orchestration"</span>, <span class="t-str">"Kali Linux"</span>, <span class="t-str">"Python (Learning)"</span>],
+  <span class="t-key">"github"</span>: <span class="t-str">"github.com/Somchand-Max"</span>
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 2: About Me Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">01 / PERSONAL PROFILE</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">
+            Bridging software engineering, defensive security, and analytical rigor.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card about-story">
+            <h3>Building Secure Systems &amp; Modern Web Experiences</h3>
+            <p>
+              I am <strong>Somchand Ratangwal</strong>, a dedicated Cybersecurity and Computer Science
+              learner based in <strong>Bengaluru, Karnataka</strong>, currently preparing for the
+              <strong>Joint IIT Madras &amp; IIT Kanpur 4-Year Bachelor of Cybersecurity (B.Cyber.) 2027</strong>
+              degree program.
+            </p>
+            <p>
+              Alongside crafting responsive interfaces with <strong>HTML5 &amp; CSS3</strong> accelerated
+              through <strong>AI Orchestration &amp; Prompt Engineering</strong>, learning
+              <strong>Python &amp; SQLite</strong> scripting, and applying conceptual <strong>JavaScript</strong>
+              via AI prompt orchestration, I actively practice <strong>authorized bug bounty hunting</strong>,
+              <strong>CTF competitions</strong>, and security workflows such as my toolset <strong>SHIVAY</strong>.
+            </p>
+            <p>
+              Beyond engineering, I bring over <strong>4 years of practical exposure</strong> to
+              stock markets, financial compliance, risk modeling, and operational trading analytics
+              while working under a Chartered Accountant—experience that directly shapes how I
+              design disciplined, security-conscious software like <strong>KAKIEBO</strong>.
+            </p>
+
+            <div class="focus-tags" aria-label="Areas of Interest">
+              <span class="tag">Cybersecurity &amp; VAPT</span>
+              <span class="tag">Artificial Intelligence</span>
+              <span class="tag">Full-Stack Web Development</span>
+              <span class="tag">AI Governance</span>
+              <span class="tag">Financial &amp; Risk Analytics</span>
+            </div>
+          </article>
+
+          <aside class="about-side">
+            <div class="card info-panel">
+              <h3>Quick Facts &amp; Goals</h3>
+              <dl class="fact-list">
+                <div class="fact-row">
+                  <dt>Personal Goal</dt>
+                  <dd>Become a skilled Cybersecurity &amp; AI Engineer building resilient, privacy-first web applications and security automation tools.</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Core Interests</dt>
+                  <dd>Web Development, Ethical Web Hacking, OWASP Top 10, AI Security Governance &amp; FinTech Systems.</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Hobbies</dt>
+                  <dd>CTF Challenges, Market Research, Photography, Music &amp; Travelling.</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Location</dt>
+                  <dd>Bengaluru, Karnataka, India</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>GitHub</dt>
+                  <dd><a href="https://github.com/Somchand-Max" target="_blank" rel="noopener noreferrer">github.com/Somchand-Max</a></dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 3: Education Section -->
+    <section id="education" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">02 / ACADEMIC JOURNEY</span>
+          <h2 class="section-title">Education &amp; Academic Background</h2>
+          <p class="section-subtitle">
+            Preparation for the Joint IIT Madras &amp; IIT Kanpur B.Cyber. 2027 degree paired with verified university coursework from HarvardX, Columbia+, and IIT Madras.
+          </p>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="card timeline-card">
+              <div class="timeline-top">
+                <span class="timeline-period">2026 – 2027 • Admissions Preparation</span>
+                <span class="badge badge-primary">Active Focus</span>
+              </div>
+              <h3>Joint Bachelor of Cybersecurity (B.Cyber.) — 4-Year Degree</h3>
+              <p class="timeline-org">
+                IIT Madras &amp; IIT Kanpur Joint Program • Target Admissions Cycle: 2027
+              </p>
+              <p class="timeline-desc">
+                Self-directed preparation for the 2027 Joint IIT Madras &amp; IIT Kanpur B.Cyber.
+                entrance screening and practical cybersecurity evaluation—building strong foundations
+                in mathematics, logical reasoning, Python scripting, Linux systems, and computer networking.
+              </p>
+            </article>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="card timeline-card">
+              <div class="timeline-top">
+                <span class="timeline-period">September 2026</span>
+                <span class="badge badge-accent">Verified Credentials</span>
+              </div>
+              <h3>University Computer Science, AI &amp; Governance Coursework</h3>
+              <p class="timeline-org">
+                Harvard University (HarvardX / edX) &amp; Columbia Engineering Executive Education (Columbia+)
+              </p>
+              <p class="timeline-desc">
+                Completed rigorous international coursework spanning foundational computer science,
+                defensive cybersecurity, artificial intelligence with Python, and enterprise AI governance.
+              </p>
+              <ul class="timeline-highlights">
+                <li><strong>Columbia Engineering:</strong> AI Cybersecurity and Governance (Exam Passed, Sep 2026)</li>
+                <li><strong>HarvardX:</strong> CS50&apos;s Introduction to Computer Science (Sep 2026)</li>
+                <li><strong>HarvardX:</strong> CS50&apos;s Introduction to Cybersecurity (Sep 2026)</li>
+                <li><strong>HarvardX:</strong> CS50&apos;s Introduction to Artificial Intelligence with Python (Sep 2026)</li>
+              </ul>
+            </article>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="card timeline-card">
+              <div class="timeline-top">
+                <span class="timeline-period">2024 – 2026</span>
+                <span class="badge badge-success">96% Top Performer</span>
+              </div>
+              <h3>Specialized Security Training &amp; Technical Workshops</h3>
+              <p class="timeline-org">
+                IITM Pravartak Technologies Foundation • Internshala • Shaastra, IIT Madras • HackerX
+              </p>
+              <p class="timeline-desc">
+                Completed hands-on technical trainings and campus technical workshops focused on
+                OWASP Top 10 vulnerabilities, automated VAPT, cloud computing, and ethical web hacking.
+              </p>
+              <ul class="timeline-highlights">
+                <li><strong>Academic Honor:</strong> Top Performer with 96% score in 8-week <em>Cyber Security with AI</em> (Jul 2026)</li>
+                <li><strong>IIT Madras Shaastra 2026:</strong> Ethical Web Hacking &amp; Cloud Computing (Jan 2026)</li>
+                <li><strong>HackerX:</strong> Ethical Hacking &amp; Cybersecurity Certification (Apr 2024)</li>
+              </ul>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Feature 4: Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">03 / CAPABILITIES</span>
+          <h2 class="section-title">Technical &amp; Non-Technical Skills</h2>
+          <p class="section-subtitle">
+            Core web, programming, security tooling, and interpersonal competencies.
+          </p>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Filter skills by category">
+          <button type="button" class="filter-btn active" data-skill-filter="all" aria-pressed="true">All Skills</button>
+          <button type="button" class="filter-btn" data-skill-filter="web-dev" aria-pressed="false">Web &amp; Programming</button>
+          <button type="button" class="filter-btn" data-skill-filter="security" aria-pressed="false">Cybersecurity &amp; OS</button>
+          <button type="button" class="filter-btn" data-skill-filter="soft" aria-pressed="false">Non-Technical &amp; Domain</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Web & Programming -->
+          <article class="card skill-card" data-skill-category="web-dev">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="skill-meta">
+                <div class="skill-title-row">
+                  <h3>HTML5 &amp; CSS3</h3>
+                  <span class="skill-level-badge level-strong">Known</span>
+                </div>
+                <span>Semantic web structure &amp; responsive styling accelerated and crafted through advanced AI prompt engineering.</span>
+              </div>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="HTML5 and CSS3 proficiency 88 percent">
+              <div class="progress-fill" data-level="88"></div>
+            </div>
+          </article>
+
+          <article class="card skill-card" data-skill-category="web-dev">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="skill-meta">
+                <div class="skill-title-row">
+                  <h3>Python &amp; SQLite</h3>
+                  <span class="skill-level-badge level-learning">Learning</span>
+                </div>
+                <span>Currently Learning — Scripting, Logic &amp; Local DBs</span>
+              </div>
+              <span class="skill-percent">60%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Python and SQLite proficiency 60 percent">
+              <div class="progress-fill" data-level="60"></div>
+            </div>
+          </article>
+
+          <article class="card skill-card" data-skill-category="web-dev">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="skill-meta">
+                <div class="skill-title-row">
+                  <h3>JavaScript</h3>
+                  <span class="skill-level-badge level-beginner">Conceptual / Beginner</span>
+                </div>
+                <span>Strong conceptual understanding of DOM, validation &amp; logic; implemented, debugged, and refined through AI prompt orchestration rather than manual coding from scratch.</span>
+              </div>
+              <span class="skill-percent">35%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript proficiency 35 percent">
+              <div class="progress-fill" data-level="35"></div>
+            </div>
+          </article>
+
+          <!-- Cybersecurity & OS -->
+          <article class="card skill-card" data-skill-category="security">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <div class="skill-meta">
+                <h3>Kali Linux, Parrot OS &amp; Termux</h3>
+                <span>Security Labs &amp; Virtual Machines</span>
+              </div>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Kali Linux, Parrot OS and Termux proficiency 88 percent">
+              <div class="progress-fill" data-level="88"></div>
+            </div>
+          </article>
+
+          <article class="card skill-card" data-skill-category="security">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="skill-meta">
+                <h3>Network Security &amp; Nmap</h3>
+                <span>Service Recon &amp; Governance</span>
+              </div>
+              <span class="skill-percent">82%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Network Security and Nmap proficiency 82 percent">
+              <div class="progress-fill" data-level="82"></div>
+            </div>
+          </article>
+
+          <!-- Non-Technical & Domain -->
+          <article class="card skill-card" data-skill-category="soft">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="skill-meta">
+                <h3>Communication</h3>
+                <span>Vulnerability Reporting &amp; Docs</span>
+              </div>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Communication proficiency 88 percent">
+              <div class="progress-fill" data-level="88"></div>
+            </div>
+          </article>
+
+          <article class="card skill-card" data-skill-category="soft">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="skill-meta">
+                <h3>Teamwork &amp; Collaboration</h3>
+                <span>CTFs &amp; Collaborative Security</span>
+              </div>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Teamwork proficiency 90 percent">
+              <div class="progress-fill" data-level="90"></div>
+            </div>
+          </article>
+
+          <article class="card skill-card" data-skill-category="soft">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+              </div>
+              <div class="skill-meta">
+                <h3>Financial &amp; Risk Analytics</h3>
+                <span>Compliance &amp; Trading Exposure</span>
+              </div>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Financial and Risk Analytics proficiency 85 percent">
+              <div class="progress-fill" data-level="85"></div>
+            </div>
+          </article>
+
+          <!-- Core Superpower: AI Orchestration & Prompt Engineering -->
+          <article class="card skill-card" data-skill-category="web-dev security">
+            <div class="skill-top">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v2l2 2v3H6v-3l2-2v-2H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z"/></svg>
+              </div>
+              <div class="skill-meta">
+                <div class="skill-title-row">
+                  <h3>AI Orchestration &amp; Prompt Engineering</h3>
+                  <span class="skill-level-badge level-superpower">Core Superpower</span>
+                </div>
+                <span>Multi-Stage AI Pipelines, Workflow Automation &amp; LLM Security &mdash; Architecting prompt chains, multi-agent workflows, rapid code generation, and exploring LLM security &amp; prompt injection boundaries.</span>
+              </div>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="AI Orchestration and Prompt Engineering proficiency 90 percent">
+              <div class="progress-fill" data-level="90"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 5: Projects Section -->
+    <section id="projects" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">04 / FEATURED WORK</span>
+          <h2 class="section-title">Projects &amp; Security Practice</h2>
+          <p class="section-subtitle">
+            Personal software builds, ethical security tooling, and domain-driven analytical projects.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div class="project-media">
+              <img src="assets/images/projects/kakiebo-budget-app.svg" alt="KAKIEBO Personal Budgeting App preview" loading="lazy">
+              <span class="project-badge">Personal Project • Active</span>
+            </div>
+            <div class="project-body">
+              <h3>KAKIEBO — Personal Budgeting App</h3>
+              <p>
+                A secure personal budgeting and expense-tracking application utilizing Python and SQLite,
+                built around structured savings allocation and local-first data privacy.
+              </p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>Python</li>
+                <li>SQLite</li>
+                <li>Parameterized Queries</li>
+                <li>Financial Logic</li>
+              </ul>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary btn-sm project-detail-btn" data-project="kakiebo">
+                  View Project Details
+                </button>
+                <a href="https://github.com/Somchand-Max" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-media">
+              <img src="assets/images/projects/shivay-security-toolkit.svg" alt="SHIVAY Security Toolset and Bug Bounty Practice preview" loading="lazy">
+              <span class="project-badge">Security Tooling • Active</span>
+            </div>
+            <div class="project-body">
+              <h3>SHIVAY &amp; Bug Bounty Practice</h3>
+              <p>
+                Personal modular security toolset engineered to streamline authorized reconnaissance,
+                Nmap enumeration, OWASP Top 10 checks, and CTF security workflows.
+              </p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>Python</li>
+                <li>Kali Linux</li>
+                <li>Nmap</li>
+                <li>VAPT / CTFs</li>
+              </ul>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary btn-sm project-detail-btn" data-project="shivay">
+                  View Project Details
+                </button>
+                <a href="https://github.com/Somchand-Max" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-media">
+              <img src="assets/images/projects/financial-analytics.svg" alt="Financial Markets Compliance and Risk Analytics preview" loading="lazy">
+              <span class="project-badge">Domain Practice • 4+ Yrs</span>
+            </div>
+            <div class="project-body">
+              <h3>Financial Markets &amp; Risk Compliance Workflow</h3>
+              <p>
+                Practical stock market analytics, regulatory compliance checklists, and risk-modeling
+                frameworks built across 4+ years of hands-on experience under a Chartered Accountant.
+              </p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>Risk Modeling</li>
+                <li>Compliance</li>
+                <li>Trading Analytics</li>
+                <li>Audit Trails</li>
+              </ul>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary btn-sm project-detail-btn" data-project="financial">
+                  View Project Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-media">
+              <img src="assets/images/projects/portfolio-architecture.svg" alt="Personal Portfolio Website responsive preview" loading="lazy">
+              <span class="project-badge">Web Development • 2026</span>
+            </div>
+            <div class="project-body">
+              <h3>Personal Portfolio Website</h3>
+              <p>
+                Responsive single-page portfolio built from scratch with semantic HTML5, CSS3 custom
+                properties, dark/light mode persistence, interactive certificate modals, and JS validation.
+              </p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Responsive UI</li>
+              </ul>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary btn-sm project-detail-btn" data-project="portfolio">
+                  View Project Details
+                </button>
+                <a href="https://github.com/Somchand-Max" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 6: Hobbies and Interests Section -->
+    <section id="hobbies" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">05 / BEYOND ACADEMICS</span>
+          <h2 class="section-title">Hobbies &amp; Interests</h2>
+          <p class="section-subtitle">
+            Curiosity-driven pursuits outside lectures that sharpen focus, creativity, and strategy.
+          </p>
+        </div>
+
+        <div class="hobbies-grid">
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>CTF &amp; Security Labs</h3>
+            <p>Solving Capture The Flag challenges, exploring Parrot OS &amp; Kali Linux setups, and testing authorized targets responsibly.</p>
+          </article>
+
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-emerald" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3>Reading &amp; Market Analysis</h3>
+            <p>Reading cybersecurity disclosures, AI governance papers, and studying financial market behavior and risk patterns.</p>
+          </article>
+
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-amber" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <h3>Photography &amp; YouTube Vlogging</h3>
+            <p>
+              Capturing moments through photography and creating vlogs on my YouTube channel—sharing
+              travel stories, campus experiences, and creative visual edits.
+            </p>
+            <a
+              href="https://www.youtube.com/@THEEVERTHINGS.7"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline btn-sm hobby-yt-btn"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>THE EVERTHING S. (@THEEVERTHINGS.7)</span>
+            </a>
+          </article>
+
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-indigo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <h3>Music</h3>
+            <p>Curating instrumental and lo-fi playlists that keep deep-focus coding and debugging sessions energized.</p>
+          </article>
+
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-rose" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            </div>
+            <h3>Travelling</h3>
+            <p>Exploring new cities, attending technical fests like IIT Madras Shaastra, and experiencing local culture.</p>
+          </article>
+
+          <article class="card hobby-card">
+            <div class="hobby-icon hobby-teal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 6.5 16.2 9.6 14.6 14.5 9.4 14.5 7.8 9.6"/></svg>
+            </div>
+            <h3>Sports &amp; Gaming (Football &amp; Free Fire)</h3>
+            <p>Playing Football outdoors to stay active and competitive, and playing Free Fire for squad strategy, tactical coordination, and quick reflexes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 7: Achievements Section (All 8 Real Uploaded Certificates) -->
+    <section id="achievements" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">06 / CERTIFICATIONS &amp; MILESTONES</span>
+          <h2 class="section-title">Achievements &amp; Certificates</h2>
+          <p class="section-subtitle">
+            Verified credentials, top-performer honors, and technical workshop participations (click any certificate to inspect).
+          </p>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Filter achievements">
+          <button type="button" class="filter-btn active" data-cert-filter="all" aria-pressed="true">All (8)</button>
+          <button type="button" class="filter-btn" data-cert-filter="ivy" aria-pressed="false">HarvardX &amp; Columbia+</button>
+          <button type="button" class="filter-btn" data-cert-filter="cyber" aria-pressed="false">Cybersecurity &amp; VAPT</button>
+          <button type="button" class="filter-btn" data-cert-filter="workshop" aria-pressed="false">IIT Madras &amp; Training</button>
+        </div>
+
+        <div class="achievements-grid" id="achievements-grid">
+          <!-- 1. Columbia+ AI Cybersecurity and Governance -->
+          <article class="card cert-card" data-cert-category="ivy cyber">
+            <button type="button" class="cert-thumb-btn" data-cert-id="columbia-ai-gov" aria-label="View Columbia Engineering AI Cybersecurity and Governance certificate">
+              <img src="assets/images/certificates/columbia-ai-cybersecurity-governance.jpg" alt="Columbia Engineering Executive Education Certificate for AI Cybersecurity and Governance awarded to Somchand Ratangwal" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Columbia Engineering / Columbia+</span>
+              </div>
+              <h3>AI Cybersecurity and Governance</h3>
+              <p>Exam passed covering AI risk frameworks, secure AI deployment, and enterprise cybersecurity governance.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Sep 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="columbia-ai-gov">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. HarvardX CS50 Cybersecurity -->
+          <article class="card cert-card" data-cert-category="ivy cyber">
+            <button type="button" class="cert-thumb-btn" data-cert-id="cs50-cyber" aria-label="View HarvardX CS50 Introduction to Cybersecurity certificate">
+              <img src="assets/images/certificates/harvardx-cs50-cybersecurity.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Cybersecurity awarded to Somchand Ratangwal" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Harvard University • HarvardX</span>
+              </div>
+              <h3>CS50&apos;s Introduction to Cybersecurity</h3>
+              <p>Verified certificate exploring threat modeling, authentication, cryptography, and secure software design.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Sep 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="cs50-cyber">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. HarvardX CS50 AI with Python -->
+          <article class="card cert-card" data-cert-category="ivy">
+            <button type="button" class="cert-thumb-btn" data-cert-id="cs50-ai" aria-label="View HarvardX CS50 Introduction to AI with Python certificate">
+              <img src="assets/images/certificates/harvardx-cs50-ai-python.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Artificial Intelligence with Python awarded to Somchand Ratangwal" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Harvard University • HarvardX</span>
+              </div>
+              <h3>CS50&apos;s Introduction to AI with Python</h3>
+              <p>Verified certificate covering search algorithms, knowledge representation, probabilistic models, and neural networks.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Sep 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="cs50-ai">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. HarvardX CS50 Computer Science -->
+          <article class="card cert-card" data-cert-category="ivy">
+            <button type="button" class="cert-thumb-btn" data-cert-id="cs50-cs" aria-label="View HarvardX CS50 Introduction to Computer Science certificate">
+              <img src="assets/images/certificates/harvardx-cs50-computer-science.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Computer Science awarded to Somchand Ratangwal" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Harvard University • HarvardX</span>
+              </div>
+              <h3>CS50&apos;s Introduction to Computer Science</h3>
+              <p>Verified certificate mastering algorithms, memory, data structures, C, Python, SQL, and web engineering.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Sep 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="cs50-cs">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Internshala & IITM Pravartak Cyber Security with AI -->
+          <article class="card cert-card" data-cert-category="cyber workshop">
+            <button type="button" class="cert-thumb-btn" data-cert-id="internshala-iitm" aria-label="View Internshala and IITM Pravartak Cyber Security with AI certificate">
+              <img src="assets/images/certificates/internshala-iitm-cybersecurity-ai.jpg" alt="Internshala Trainings and IITM Pravartak Certificate of Training in Cyber Security with AI awarded to Somchand Ratangwal with 96 percent score" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026 • 96% Score</span>
+                <span class="cert-issuer">Internshala &amp; IITM Pravartak</span>
+              </div>
+              <h3>Cyber Security with AI (Top Performer)</h3>
+              <p>8-week training covering OWASP Top 10 VAPT, networking, automating VAPT, and vulnerability reporting—96% final score.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Jul 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="internshala-iitm">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Shaastra IIT Madras Ethical Web Hacking -->
+          <article class="card cert-card" data-cert-category="cyber workshop">
+            <button type="button" class="cert-thumb-btn" data-cert-id="shaastra-web" aria-label="View Shaastra IIT Madras Ethical Web Hacking certificate">
+              <img src="assets/images/certificates/iitm-shaastra-ethical-web-hacking.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Ethical Web Hacking awarded to Somchand Ratangwal" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Shaastra, IIT Madras</span>
+              </div>
+              <h3>Ethical Web Hacking Workshop</h3>
+              <p>Technical workshop conducted at Shaastra 2026 (IIT Madras) focused on web vulnerabilities and ethical exploitation.</p>
+              <div class="cert-footer">
+                <span class="cert-id">Conducted: 02 Jan 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="shaastra-web">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. Shaastra IIT Madras Cloud Computing -->
+          <article class="card cert-card" data-cert-category="workshop">
+            <button type="button" class="cert-thumb-btn" data-cert-id="shaastra-cloud" aria-label="View Shaastra IIT Madras Cloud Computing certificate">
+              <img src="assets/images/certificates/iitm-shaastra-cloud-computing.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Cloud Computing awarded to Somchand" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2026</span>
+                <span class="cert-issuer">Shaastra, IIT Madras</span>
+              </div>
+              <h3>Cloud Computing Workshop</h3>
+              <p>Hands-on cloud infrastructure and architecture workshop conducted during Shaastra 2026 at IIT Madras.</p>
+              <div class="cert-footer">
+                <span class="cert-id">Conducted: 03 Jan 2026</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="shaastra-cloud">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. HackerX Ethical Hacking & Cybersecurity -->
+          <article class="card cert-card" data-cert-category="cyber">
+            <button type="button" class="cert-thumb-btn" data-cert-id="hackerx" aria-label="View HackerX Ethical Hacking and Cybersecurity certificate">
+              <img src="assets/images/certificates/hackerx-ethical-hacking.jpg" alt="HackerX Certificate of Achievement in Ethical Hacking and Cybersecurity awarded to Somchand" loading="lazy">
+              <span class="cert-zoom-hint">Click to Inspect</span>
+            </button>
+            <div class="cert-body">
+              <div class="cert-meta">
+                <span class="cert-year">2024</span>
+                <span class="cert-issuer">HackerX</span>
+              </div>
+              <h3>Ethical Hacking &amp; Cybersecurity</h3>
+              <p>Completed all HackerX Ethical Hacking &amp; Cybersecurity certification courses and passed the domain assessment.</p>
+              <div class="cert-footer">
+                <span class="cert-id">ID: Protected (Privacy Redacted) • Apr 2024</span>
+                <button type="button" class="btn-link cert-open-btn" data-cert-id="hackerx">View Certificate &rarr;</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 8: Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">07 / GET IN TOUCH</span>
+          <h2 class="section-title">Contact Me</h2>
+          <p class="section-subtitle">
+            Open to collaborating on web projects, cybersecurity research, CTFs, and student opportunities.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-column">
+            <div class="card contact-card">
+              <h3>Direct Contact Information</h3>
+              <p class="contact-intro">
+                Feel free to reach out via email, phone, or connect on GitHub and LinkedIn.
+              </p>
+
+              <ul class="contact-details">
+                <li>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </span>
+                  <div class="contact-text">
+                    <span class="contact-label">Email Address</span>
+                    <div class="copy-row">
+                      <a href="mailto:somchandratangwal7@gmail.com">somchandratangwal7@gmail.com</a>
+                      <button type="button" class="copy-btn" id="copy-email-btn" aria-label="Copy email address">Copy</button>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </span>
+                  <div class="contact-text">
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:+918369882102">+91 83698 82102</a>
+                  </div>
+                </li>
+
+                <li>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </span>
+                  <div class="contact-text">
+                    <span class="contact-label">Location</span>
+                    <span>Bengaluru, Karnataka, India</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="social-links" aria-label="Social Profiles">
+                <a href="https://github.com/Somchand-Max" target="_blank" rel="noopener noreferrer" class="social-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/somchand-ratangwal/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-column">
+            <form class="card contact-form" id="contact-form" novalidate>
+              <h3>Send a Message</h3>
+              <p class="form-note">
+                All fields are validated in real time using JavaScript before submission.
+              </p>
+
+              <div class="form-group">
+                <label for="contact-name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  placeholder="Enter your full name"
+                  autocomplete="name"
+                  required
+                  aria-describedby="name-error"
+                >
+                <span class="field-error" id="name-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                  aria-describedby="email-error"
+                >
+                <span class="field-error" id="email-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="contact-message">Message <span class="req" aria-hidden="true">*</span></label>
+                  <span class="char-count" id="char-count">0 / 500</span>
+                </div>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="5"
+                  maxlength="500"
+                  placeholder="Write your message (minimum 10 characters)..."
+                  required
+                  aria-describedby="message-error"
+                ></textarea>
+                <span class="field-error" id="message-error" role="alert"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">
+                <span>Validate &amp; Send Message</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+
+              <div class="form-feedback" id="form-feedback" role="status" aria-live="polite" hidden></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-code">&lt;/&gt;</span>
+        <span>Somchand Ratangwal — Personal Portfolio</span>
+      </div>
+      <p class="footer-copy">
+        Built with HTML5, CSS3 &amp; JavaScript • Cybersecurity &amp; AI Portfolio
+      </p>
+      <a href="#home" class="back-top-link">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <!-- Interactive Certificate / Resume Lightbox Modal -->
+  <div class="modal-backdrop" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title" hidden>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow" id="cert-modal-issuer">Issuer</span>
+          <h3 id="cert-modal-title">Certificate Title</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal="cert-modal" aria-label="Close certificate preview">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="zoom-toolbar" id="zoom-toolbar" role="toolbar" aria-label="Image zoom controls">
+          <div class="zoom-btn-group">
+            <button type="button" class="zoom-btn" id="zoom-out-btn" aria-label="Zoom out">&minus; Zoom Out</button>
+            <span class="zoom-level-badge" id="zoom-level-label" aria-live="polite">Fit</span>
+            <button type="button" class="zoom-btn" id="zoom-in-btn" aria-label="Zoom in">+ Zoom In</button>
+          </div>
+          <div class="zoom-btn-group">
+            <button type="button" class="zoom-btn" id="zoom-reset-btn">100% Reset</button>
+            <button type="button" class="zoom-btn active" id="zoom-fit-btn">Fit Width</button>
+            <a href="resume.html" target="_blank" rel="noopener noreferrer" class="zoom-btn" id="open-printable-resume-link" hidden>Print / Save PDF</a>
+          </div>
+        </div>
+        <div class="modal-image-wrap modal-zoom-viewport" id="cert-zoom-viewport">
+          <img id="cert-modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+        </div>
+        <p class="zoom-hint" id="zoom-hint">Tip: Use buttons, mouse wheel / trackpad pinch, or drag to pan when zoomed in.</p>
+        <div class="modal-meta-bar">
+          <span id="cert-modal-date" class="meta-pill">Date</span>
+          <span id="cert-modal-credential" class="meta-pill mono-tag">Credential ID</span>
+        </div>
+        <p id="cert-modal-desc" class="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Project Details Modal -->
+  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow" id="project-modal-category">Category</span>
+          <h3 id="project-modal-title">Project Title</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal="project-modal" aria-label="Close project details">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image-wrap modal-project-img">
+          <img id="project-modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+        </div>
+        <p id="project-modal-summary" class="modal-desc"></p>
+        <div class="modal-section">
+          <h4>Key Highlights &amp; Architecture</h4>
+          <ul id="project-modal-highlights" class="modal-list"></ul>
+        </div>
+        <div class="modal-section">
+          <h4>Technologies Used</h4>
+          <div id="project-modal-tech" class="tech-list"></div>
+        </div>
+        <div class="modal-actions" id="project-modal-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

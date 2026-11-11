@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" role="img" aria-label="SHIVAY Security Toolset and Recon Dashboard Preview">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050b14"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="380" rx="16" fill="url(#bg2)"/>
+  <rect x="24" y="20" width="592" height="340" rx="12" fill="#070d19" stroke="#1e293b" stroke-width="1.5"/>
+  <!-- Top Bar -->
+  <circle cx="48" cy="40" r="5" fill="#ef4444"/>
+  <circle cx="66" cy="40" r="5" fill="#f59e0b"/>
+  <circle cx="84" cy="40" r="5" fill="#22c55e"/>
+  <text x="112" y="44" fill="#34d399" font-family="monospace" font-size="12" font-weight="700">SHIVAY v1.0 — Authorized Security &amp; Recon Suite</text>
+  <line x1="24" y1="60" x2="616" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Left Terminal Panel -->
+  <rect x="44" y="78" width="356" height="262" rx="10" fill="#030712" stroke="#1e293b"/>
+  <text x="60" y="102" fill="#38bdf8" font-family="monospace" font-size="11">root@kali:~/shivay# ./shivay --scope authorized.lab</text>
+  <text x="60" y="128" fill="#94a3b8" font-family="monospace" font-size="10.5">[*] Loading modular recon &amp; VAPT pipeline...</text>
+  <text x="60" y="148" fill="#34d399" font-family="monospace" font-size="10.5">[+] Nmap TCP/Service Enumeration: 3 ports open</text>
+  <text x="60" y="168" fill="#34d399" font-family="monospace" font-size="10.5">[+] HTTP Security Headers Audit: CSP / HSTS checked</text>
+  <text x="60" y="188" fill="#fbbf24" font-family="monospace" font-size="10.5">[!] OWASP Top 10 Check: Missing X-Frame-Options</text>
+  <text x="60" y="208" fill="#34d399" font-family="monospace" font-size="10.5">[+] Subdomain &amp; Endpoint Discovery complete</text>
+  <text x="60" y="228" fill="#94a3b8" font-family="monospace" font-size="10.5">[*] Generating structured VAPT markdown report...</text>
+  <rect x="60" y="250" width="324" height="72" rx="8" fill="#0c1526" stroke="#1e3a5f"/>
+  <text x="74" y="272" fill="#38bdf8" font-family="monospace" font-size="10.5" font-weight="700">ACTIVE ENVIRONMENT</text>
+  <text x="74" y="292" fill="#cbd5e1" font-family="monospace" font-size="10">OS: Kali Linux / Parrot OS / Termux</text>
+  <text x="74" y="309" fill="#cbd5e1" font-family="monospace" font-size="10">Scope: Authorized CTF &amp; Bug Bounty Practice</text>
+
+  <!-- Right Shield / Modules Card -->
+  <rect x="416" y="78" width="180" height="262" rx="10" fill="#0d1526" stroke="#1e293b"/>
+  <path d="M506 104 L544 120 V152 C544 178 527 198 506 208 C485 198 468 178 468 152 V120 L506 104 Z" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+  <path d="M495 154 L503 162 L520 144" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="506" y="232" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">ETHICAL SECURITY</text>
+  <rect x="434" y="248" width="144" height="24" rx="6" fill="#132238"/>
+  <text x="506" y="264" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="10">Nmap Recon</text>
+  <rect x="434" y="278" width="144" height="24" rx="6" fill="#132238"/>
+  <text x="506" y="294" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="10">OWASP Top 10 VAPT</text>
+  <rect x="434" y="308" width="144" height="24" rx="6" fill="#132238"/>
+  <text x="506" y="324" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="10">CTF &amp; Bug Bounty</text>
+</svg>

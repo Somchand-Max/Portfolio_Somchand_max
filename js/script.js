@@ -569,7 +569,7 @@
         document.getElementById('project-modal-summary').textContent = data.summary;
 
         const listEl = document.getElementById('project-modal-highlights');
-        listEl.innerHTML = '';
+        listEl.replaceChildren();
         data.highlights.forEach(function (point) {
           const li = document.createElement('li');
           li.textContent = point;
@@ -577,7 +577,7 @@
         });
 
         const techEl = document.getElementById('project-modal-tech');
-        techEl.innerHTML = '';
+        techEl.replaceChildren();
         data.tech.forEach(function (item) {
           const span = document.createElement('span');
           span.className = 'tag';
@@ -586,7 +586,7 @@
         });
 
         const actionsEl = document.getElementById('project-modal-actions');
-        actionsEl.innerHTML = '';
+        actionsEl.replaceChildren();
         if (data.github) {
           const ghLink = document.createElement('a');
           ghLink.href = data.github;
@@ -627,8 +627,30 @@
     const nameInput = document.getElementById('contact-name');
     const emailInput = document.getElementById('contact-email');
     const messageInput = document.getElementById('contact-message');
+    const honeypotInput = document.getElementById('contact-website-url');
     const charCount = document.getElementById('char-count');
     const feedbackEl = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const submitLabelEl = submitBtn ? submitBtn.querySelector('.btn-label') : null;
+    let isSubmitting = false;
+    let csrfToken = '';
+
+    async function fetchCsrfToken() {
+      try {
+        const res = await fetch('/api/csrf-token', {
+          method: 'GET',
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        });
+        if (!res.ok) return '';
+        const body = await res.json();
+        csrfToken = body && body.csrf_token ? String(body.csrf_token) : '';
+        return csrfToken;
+      } catch (e) {
+        return '';
+      }
+    }
+
+    fetchCsrfToken();
 
     const validators = [
       {
@@ -637,6 +659,7 @@
         validate: function (val) {
           if (!val) return 'Please enter your name.';
           if (val.length < 2) return 'Name must be at least 2 characters long.';
+          if (val.length > 80) return 'Name must be 80 characters or fewer.';
           return '';
         }
       },
@@ -645,7 +668,7 @@
         errorEl: document.getElementById('email-error'),
         validate: function (val) {
           if (!val) return 'Please enter your email address.';
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) {
+          if (val.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) {
             return 'Please enter a valid email address (e.g., name@domain.com).';
           }
           return '';
@@ -657,6 +680,7 @@
         validate: function (val) {
           if (!val) return 'Please enter a message.';
           if (val.length < 10) return 'Message should be at least 10 characters long.';
+          if (val.length > 500) return 'Message must be 500 characters or fewer.';
           return '';
         }
       }
@@ -688,8 +712,21 @@
       });
     }
 
-    form.addEventListener('submit', function (event) {
+    function setSubmittingState(submitting) {
+      isSubmitting = submitting;
+      if (!submitBtn) return;
+      submitBtn.disabled = submitting;
+      submitBtn.classList.toggle('is-loading', submitting);
+      if (submitLabelEl) {
+        submitLabelEl.textContent = submitting ? 'Sending...' : 'Validate & Send Message';
+      }
+    }
+
+    form.addEventListener('submit', async function (event) {
       event.preventDefault();
+      if (isSubmitting) return;
+
+      feedbackEl.hidden = true;
       let allValid = true;
       let firstInvalid = null;
 
@@ -709,21 +746,62 @@
         return;
       }
 
-      const senderName = nameInput.value.trim();
-      feedbackEl.hidden = false;
-      feedbackEl.className = 'form-feedback success';
-      feedbackEl.textContent =
-        'Thank you, ' +
-        senderName +
-        '! All details passed validation. (Note: As this is a static portfolio without a backend email server, no email was transmitted — you can reach me directly at somchandratangwal7@gmail.com.)';
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        message: messageInput.value.trim(),
+        website_url: honeypotInput ? honeypotInput.value : ''
+      };
 
-      form.reset();
-      if (charCount) charCount.textContent = '0 / 500';
-      validators.forEach(function (field) {
-        field.input.classList.remove('invalid');
-        field.input.setAttribute('aria-invalid', 'false');
-        field.errorEl.textContent = '';
-      });
+      setSubmittingState(true);
+
+      try {
+        const activeCsrfToken = csrfToken || (await fetchCsrfToken());
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': activeCsrfToken
+          },
+          body: JSON.stringify(payload)
+        });
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (parseErr) {
+          data = null;
+        }
+
+        if (!response.ok || !data || !data.success) {
+          const errorMessage =
+            (data && (data.error || data.message)) ||
+            'Unable to send message right now. Please make sure the local Python backend is running.';
+          feedbackEl.hidden = false;
+          feedbackEl.className = 'form-feedback error';
+          feedbackEl.textContent = errorMessage;
+          return;
+        }
+
+        feedbackEl.hidden = false;
+        feedbackEl.className = 'form-feedback success';
+        feedbackEl.textContent = 'Message sent successfully! Som will get back to you shortly.';
+
+        form.reset();
+        if (charCount) charCount.textContent = '0 / 500';
+        validators.forEach(function (field) {
+          field.input.classList.remove('invalid');
+          field.input.setAttribute('aria-invalid', 'false');
+          field.errorEl.textContent = '';
+        });
+      } catch (networkErr) {
+        feedbackEl.hidden = false;
+        feedbackEl.className = 'form-feedback error';
+        feedbackEl.textContent = 'Network error: Unable to reach /api/contact. Please verify server.py is running on port 8080.';
+      } finally {
+        setSubmittingState(false);
+      }
     });
   }
 

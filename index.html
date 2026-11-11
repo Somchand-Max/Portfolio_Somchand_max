@@ -13,19 +13,8 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Prevent theme flash before first paint -->
-  <script>
-    (function () {
-      try {
-        var saved = localStorage.getItem('portfolio-theme');
-        if (saved === 'light' || saved === 'dark') {
-          document.documentElement.setAttribute('data-theme', saved);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-          document.documentElement.setAttribute('data-theme', 'light');
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <!-- Prevent theme flash before first paint (external for strict CSP) -->
+  <script src="js/theme-init.js"></script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -982,6 +971,7 @@
                   type="text"
                   id="contact-name"
                   name="name"
+                  maxlength="80"
                   placeholder="Enter your full name"
                   autocomplete="name"
                   required
@@ -996,12 +986,24 @@
                   type="email"
                   id="contact-email"
                   name="email"
+                  maxlength="120"
                   placeholder="you@example.com"
                   autocomplete="email"
                   required
                   aria-describedby="email-error"
                 >
                 <span class="field-error" id="email-error" role="alert"></span>
+              </div>
+
+              <div class="hp-field" aria-hidden="true">
+                <label for="contact-website-url">Website</label>
+                <input
+                  type="text"
+                  id="contact-website-url"
+                  name="website_url"
+                  tabindex="-1"
+                  autocomplete="off"
+                >
               </div>
 
               <div class="form-group">
@@ -1021,9 +1023,10 @@
                 <span class="field-error" id="message-error" role="alert"></span>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-full">
-                <span>Validate &amp; Send Message</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <button type="submit" class="btn btn-primary btn-full" id="contact-submit-btn">
+                <span class="btn-spinner" aria-hidden="true"></span>
+                <span class="btn-label">Validate &amp; Send Message</span>
+                <svg class="btn-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               </button>
 
               <div class="form-feedback" id="form-feedback" role="status" aria-live="polite" hidden></div>

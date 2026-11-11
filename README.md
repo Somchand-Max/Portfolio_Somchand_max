@@ -73,4 +73,4 @@ Then visit `http://localhost:8080`. Contact submissions are saved safely to `dat
 ./venv/bin/streamlit run app.py
 ```
 
-Set `PORTFOLIO_ADMIN_KEY` in environment variables or `.streamlit/secrets.toml` to unlock the admin `.xlsx` preview and download tab.
+Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` (or a PBKDF2 `ADMIN_PASSWORD_HASH`) in Streamlit Cloud Secrets (`App Settings -> Secrets`) or environment variables, then sign in via the sidebar **🔒 Admin Portal** or `?admin=true` to access the Admin Management Dashboard and download `data/contact_messages.xlsx`.

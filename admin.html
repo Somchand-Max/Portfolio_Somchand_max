@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal • Somchand Ratangwal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#090d16">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <script>
+    (function () {
+      'use strict';
+      try {
+        var saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .admin-title-group h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0;
+    }
+    .admin-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      background: var(--accent-tint);
+      color: var(--accent-primary);
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Auth Box */
+    .auth-card-wrap {
+      max-width: 440px;
+      margin: 4rem auto;
+    }
+    .auth-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-card);
+    }
+    .auth-card h2 {
+      font-size: 1.4rem;
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+    }
+    .auth-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .auth-form .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .auth-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-secondary);
+    }
+    .auth-form input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .auth-form input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-tint);
+    }
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+    }
+    .auth-error {
+      background: var(--danger-tint);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .auth-footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+    }
+
+    /* Dashboard Layout */
+    .dashboard-panel {
+      display: none;
+    }
+    .dashboard-panel.active {
+      display: block;
+    }
+
+    /* Metric Cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .metric-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+    .metric-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .metric-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+      line-height: 1;
+    }
+    .metric-sub {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .controls-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 280px;
+    }
+    .search-input {
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      flex: 1;
+    }
+    .filter-select {
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+    }
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Table */
+    .table-responsive {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-card);
+    }
+    .messages-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .messages-table th {
+      background: var(--bg-alt);
+      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .messages-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+    .messages-table tr:last-child td {
+      border-bottom: none;
+    }
+    .messages-table tr:hover {
+      background: var(--bg-alt);
+    }
+    .messages-table tr.unread-row {
+      background: rgba(56, 189, 248, 0.04);
+      font-weight: 500;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .status-unread {
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--danger);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+    }
+    .status-read {
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-strong);
+    }
+    .status-replied {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-secondary);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+    .msg-preview {
+      max-width: 340px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .msg-preview:hover {
+      color: var(--accent-primary);
+    }
+    .table-actions {
+      display: flex;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .action-icon-btn {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: var(--transition);
+    }
+    .action-icon-btn:hover {
+      background: var(--accent-tint);
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      color: var(--text-secondary);
+    }
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* Modal for View Message */
+    .view-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 16, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 9999;
+    }
+    .view-modal-content {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      max-width: 580px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: var(--shadow-hover);
+    }
+    .view-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .view-modal-body {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+    }
+    .view-modal-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.4rem 1rem;
+    }
+
+    /* Info Banner */
+    .info-box {
+      margin-top: 2rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .info-box svg {
+      flex-shrink: 0;
+      color: var(--accent-primary);
+      margin-top: 0.2rem;
+    }
+    .info-box h4 {
+      margin: 0 0 0.3rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+    .info-box p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Top Header -->
+    <header class="admin-header">
+      <div class="admin-title-group">
+        <a href="./index.html" class="brand" style="text-decoration:none;">
+          <span class="brand-code">&lt;/&gt;</span>
+          <span class="brand-name">Somchand</span>
+        </a>
+        <h1>Admin Portal <span class="admin-badge">Secure v2.0</span></h1>
+      </div>
+
+      <div class="admin-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="toggle-icon" id="theme-icon">☀️</span>
+          <span class="toggle-text" id="theme-text">Light</span>
+        </button>
+        <a href="./index.html" class="btn btn-secondary" style="font-size:0.85rem; padding:0.55rem 1rem;">
+          &larr; View Website
+        </a>
+        <button id="logout-btn" class="btn btn-secondary" style="display:none; font-size:0.85rem; padding:0.55rem 1rem; color:var(--danger); border-color:rgba(248,113,113,0.3);">
+          Log Out
+        </button>
+      </div>
+    </header>
+
+    <!-- SECTION 1: AUTHENTICATION FORM (Shown when logged out) -->
+    <section id="auth-section" class="auth-card-wrap">
+      <div class="auth-card">
+        <h2>🔒 Administrator Sign In</h2>
+        <p>Access your message inbox, manage client inquiries, and export spreadsheet logs.</p>
+
+        <form id="admin-login-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="admin-email">Admin Email</label>
+            <input
+              type="email"
+              id="admin-email"
+              placeholder="somchandratangwal7@gmail.com"
+              value="somchandratangwal7@gmail.com"
+              required
+              autocomplete="username"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="admin-password">Admin Password</label>
+            <input
+              type="password"
+              id="admin-password"
+              placeholder="Enter admin password"
+              required
+              autocomplete="current-password"
+            >
+          </div>
+
+          <button type="submit" id="login-submit-btn" class="btn btn-primary btn-block">
+            Sign In to Admin Portal
+          </button>
+
+          <div id="auth-error-box" class="auth-error" style="display:none;" role="alert"></div>
+        </form>
+
+        <p class="auth-footer-note">
+          Protected by SHA-256 cryptographic check and automatic brute-force lockout.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ADMIN DASHBOARD (Shown when authenticated) -->
+    <main id="dashboard-section" class="dashboard-panel">
+      <!-- Metrics Overview -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Total Inquiries</div>
+          <div class="metric-value" id="stat-total">0</div>
+          <div class="metric-sub">Recorded across all sessions</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Unread Messages</div>
+          <div class="metric-value" id="stat-unread" style="color:var(--danger);">0</div>
+          <div class="metric-sub">Pending review</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Today's Inquiries</div>
+          <div class="metric-value" id="stat-today" style="color:var(--accent-primary);">0</div>
+          <div class="metric-sub">Received in the last 24h</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Unique Senders</div>
+          <div class="metric-value" id="stat-senders" style="color:var(--accent-secondary);">0</div>
+          <div class="metric-sub">Distinct client email addresses</div>
+        </div>
+      </div>
+
+      <!-- Controls & Search Toolbar -->
+      <div class="controls-bar">
+        <div class="controls-left">
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="🔍 Search by name, email, or message keyword..."
+          >
+          <select id="filter-status" class="filter-select">
+            <option value="all">All Inquiries</option>
+            <option value="unread">Unread Only</option>
+            <option value="read">Read Only</option>
+            <option value="replied">Replied Only</option>
+          </select>
+        </div>
+
+        <div class="controls-right">
+          <button id="export-excel-btn" class="btn btn-primary" style="font-size:0.85rem; padding:0.6rem 1rem;">
+            📥 Download Excel (.csv)
+          </button>
+          <button id="add-test-btn" class="btn btn-secondary" style="font-size:0.85rem; padding:0.6rem 0.9rem;" title="Simulate a sample contact message">
+            ➕ Add Test Inquiry
+          </button>
+          <button id="clear-all-btn" class="btn btn-secondary" style="font-size:0.85rem; padding:0.6rem 0.9rem; color:var(--text-muted);" title="Clear recorded messages">
+            🗑️ Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Table -->
+      <div class="table-responsive">
+        <table class="messages-table" id="messages-table">
+          <thead>
+            <tr>
+              <th>Date / Time</th>
+              <th>Sender</th>
+              <th>Email Address</th>
+              <th>Message Preview</th>
+              <th>Status</th>
+              <th style="text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="messages-tbody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+
+        <div id="empty-state" class="empty-state" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+          </svg>
+          <p>No contact inquiries found matching your filter.</p>
+        </div>
+      </div>
+
+      <!-- Live Messaging & Gmail Delivery Info Box -->
+      <div class="info-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div>
+          <h4>How Inquiries Are Delivered Directly to You</h4>
+          <p>
+            When a visitor fills out the contact form on your portfolio (whether on GitHub Pages, Vercel, or local), their message is automatically delivered straight to your Gmail (<strong>somchandratangwal7@gmail.com</strong>) via automated email notification, AND saved right here in your Admin Portal. You can download the full spreadsheet (.csv / .xlsx compatible) at any time.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- View Message Lightbox Modal -->
+  <div id="view-modal" class="view-modal" style="display:none;">
+    <div class="view-modal-content">
+      <div class="view-modal-header">
+        <div>
+          <h3 style="margin:0 0 0.3rem;" id="modal-sender-name">Message Details</h3>
+          <span id="modal-status-badge" class="status-badge status-unread">Unread</span>
+        </div>
+        <button id="close-modal-btn" class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:1.1rem; line-height:1;">&times;</button>
+      </div>
+
+      <div class="view-modal-meta">
+        <strong>Sender:</strong> <span id="modal-sender-fullname"></span>
+        <strong>Email:</strong> <span id="modal-sender-email"></span>
+        <strong>Timestamp:</strong> <span id="modal-timestamp"></span>
+      </div>
+
+      <div class="view-modal-body" id="modal-message-body"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+        <button id="modal-toggle-status-btn" class="btn btn-secondary" style="font-size:0.85rem;">
+          Toggle Read Status
+        </button>
+        <a id="modal-reply-btn" href="#" class="btn btn-primary" style="font-size:0.85rem;">
+          ✉️ Reply via Gmail
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------------------
+         Admin Credentials Configuration (SHA-256 Hashed Check)
+         ------------------------------------------------------------------------ */
+      const ADMIN_EMAIL = 'somchandratangwal7@gmail.com';
+      // SHA-256 hash of "26112009@som7"
+      const ADMIN_PASSWORD_HASH = '9764f6ffebc882218b0b96f227db2327c739687026010c6769affecf2823c8ba';
+
+      const STORAGE_KEY = 'portfolio_contact_messages';
+      const AUTH_SESSION_KEY = 'portfolio_admin_auth_active';
+      const LOCKOUT_KEY = 'portfolio_admin_lockout';
+
+      let currentMessages = [];
+      let activeModalMessageId = null;
+
+      /* ------------------------------------------------------------------------
+         Crypto Helper: Compute SHA-256 in browser Web Crypto API
+         ------------------------------------------------------------------------ */
+      async function sha256(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      /* ------------------------------------------------------------------------
+         Brute-force Lockout Guard (5 failures -> 15 min lock)
+         ------------------------------------------------------------------------ */
+      function getLockoutState() {
+        try {
+          const raw = localStorage.getItem(LOCKOUT_KEY);
+          if (!raw) return { failures: 0, lockedUntil: 0 };
+          return JSON.parse(raw);
+        } catch (e) {
+          return { failures: 0, lockedUntil: 0 };
+        }
+      }
+
+      function recordFailedAttempt() {
+        const state = getLockoutState();
+        state.failures = (state.failures || 0) + 1;
+        if (state.failures >= 5) {
+          state.lockedUntil = Date.now() + 15 * 60 * 1000; // 15 mins
+        }
+        localStorage.setItem(LOCKOUT_KEY, JSON.stringify(state));
+        return state;
+      }
+
+      function clearLockout() {
+        localStorage.removeItem(LOCKOUT_KEY);
+      }
+
+      /* ------------------------------------------------------------------------
+         UI Auth View Switcher
+         ------------------------------------------------------------------------ */
+      const authSection = document.getElementById('auth-section');
+      const dashboardSection = document.getElementById('dashboard-section');
+      const logoutBtn = document.getElementById('logout-btn');
+      const loginForm = document.getElementById('admin-login-form');
+      const emailInput = document.getElementById('admin-email');
+      const passwordInput = document.getElementById('admin-password');
+      const authErrorBox = document.getElementById('auth-error-box');
+
+      function setAuthenticatedView(isAuth) {
+        if (isAuth) {
+          authSection.style.display = 'none';
+          dashboardSection.classList.add('active');
+          logoutBtn.style.display = 'inline-flex';
+          loadMessages();
+          renderDashboard();
+        } else {
+          authSection.style.display = 'block';
+          dashboardSection.classList.remove('active');
+          logoutBtn.style.display = 'none';
+        }
+      }
+
+      function checkSession() {
+        const sessionActive = sessionStorage.getItem(AUTH_SESSION_KEY) === 'true';
+        setAuthenticatedView(sessionActive);
+      }
+
+      loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        authErrorBox.style.display = 'none';
+
+        const lockout = getLockoutState();
+        if (lockout.lockedUntil && Date.now() < lockout.lockedUntil) {
+          const remainingMins = Math.ceil((lockout.lockedUntil - Date.now()) / 60000);
+          authErrorBox.textContent = `Too many failed login attempts. Portal locked for security. Please try again in ${remainingMins} minute(s).`;
+          authErrorBox.style.display = 'block';
+          return;
+        }
+
+        const enteredEmail = emailInput.value.trim().toLowerCase();
+        const enteredPassword = passwordInput.value;
+
+        if (!enteredEmail || !enteredPassword) {
+          authErrorBox.textContent = 'Please enter both your admin email and password.';
+          authErrorBox.style.display = 'block';
+          return;
+        }
+
+        const enteredHash = await sha256(enteredPassword);
+
+        // Constant-time or direct hash verification
+        if (enteredEmail === ADMIN_EMAIL && enteredHash === ADMIN_PASSWORD_HASH) {
+          clearLockout();
+          sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+          setAuthenticatedView(true);
+          loginForm.reset();
+        } else {
+          const updatedLock = recordFailedAttempt();
+          const attemptsLeft = Math.max(0, 5 - updatedLock.failures);
+          if (attemptsLeft === 0) {
+            authErrorBox.textContent = 'Account locked for 15 minutes due to 5 consecutive failed attempts.';
+          } else {
+            authErrorBox.textContent = `Invalid email or password. (${attemptsLeft} attempt(s) remaining before security lockout)`;
+          }
+          authErrorBox.style.display = 'block';
+        }
+      });
+
+      logoutBtn.addEventListener('click', function () {
+        sessionStorage.removeItem(AUTH_SESSION_KEY);
+        setAuthenticatedView(false);
+      });
+
+      /* ------------------------------------------------------------------------
+         Storage & Messages Management
+         ------------------------------------------------------------------------ */
+      function loadMessages() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            currentMessages = JSON.parse(raw);
+          } else {
+            // Seed a welcome sample message if brand new
+            currentMessages = [
+              {
+                id: 'msg_sample_1',
+                timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+                name: 'Suhas Kulkarni',
+                email: 'suhas.k@techinnovate.io',
+                message: 'Hi Somchand, loved your portfolio and your work on AI automation pipelines and OWASP security audits. Would love to discuss a 3-month security audit retainer for our startup in Mumbai.',
+                status: 'unread'
+              }
+            ];
+            saveMessages();
+          }
+        } catch (e) {
+          currentMessages = [];
+        }
+      }
+
+      function saveMessages() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(currentMessages));
+        } catch (e) {}
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function formatDate(isoStr) {
+        try {
+          const d = new Date(isoStr);
+          return d.toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        } catch (e) {
+          return isoStr;
+        }
+      }
+
+      /* ------------------------------------------------------------------------
+         Dashboard Render
+         ------------------------------------------------------------------------ */
+      const statTotal = document.getElementById('stat-total');
+      const statUnread = document.getElementById('stat-unread');
+      const statToday = document.getElementById('stat-today');
+      const statSenders = document.getElementById('stat-senders');
+      const messagesTbody = document.getElementById('messages-tbody');
+      const emptyState = document.getElementById('empty-state');
+      const searchInput = document.getElementById('search-input');
+      const filterStatus = document.getElementById('filter-status');
+
+      function renderDashboard() {
+        // Compute stats
+        const total = currentMessages.length;
+        const unread = currentMessages.filter(m => m.status === 'unread').length;
+        const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+        const today = currentMessages.filter(m => new Date(m.timestamp).getTime() > oneDayAgo).length;
+        const uniqueSenders = new Set(currentMessages.map(m => (m.email || '').toLowerCase())).size;
+
+        statTotal.textContent = total;
+        statUnread.textContent = unread;
+        statToday.textContent = today;
+        statSenders.textContent = uniqueSenders;
+
+        // Filter messages
+        const query = searchInput.value.trim().toLowerCase();
+        const statusFilter = filterStatus.value;
+
+        const filtered = currentMessages.filter(m => {
+          if (statusFilter !== 'all' && m.status !== statusFilter) return false;
+          if (query) {
+            const haystack = `${m.name} ${m.email} ${m.message}`.toLowerCase();
+            return haystack.includes(query);
+          }
+          return true;
+        });
+
+        messagesTbody.innerHTML = '';
+        if (filtered.length === 0) {
+          emptyState.style.display = 'block';
+          return;
+        }
+        emptyState.style.display = 'none';
+
+        filtered.forEach(msg => {
+          const tr = document.createElement('tr');
+          if (msg.status === 'unread') tr.classList.add('unread-row');
+
+          const statusClass = msg.status === 'unread' ? 'status-unread' : (msg.status === 'replied' ? 'status-replied' : 'status-read');
+          const statusLabel = msg.status ? (msg.status.charAt(0).toUpperCase() + msg.status.slice(1)) : 'Read';
+
+          tr.innerHTML = `
+            <td style="white-space:nowrap; font-size:0.84rem; color:var(--text-secondary);">
+              ${escapeHtml(formatDate(msg.timestamp))}
+            </td>
+            <td>
+              <strong style="color:var(--text-primary);">${escapeHtml(msg.name)}</strong>
+            </td>
+            <td>
+              <a href="mailto:${encodeURIComponent(msg.email)}" style="color:var(--accent-primary); text-decoration:none;">
+                ${escapeHtml(msg.email)}
+              </a>
+            </td>
+            <td>
+              <div class="msg-preview" data-id="${msg.id}" title="Click to view full message">
+                ${escapeHtml(msg.message)}
+              </div>
+            </td>
+            <td>
+              <span class="status-badge ${statusClass}">
+                ${statusLabel}
+              </span>
+            </td>
+            <td style="text-align:right;">
+              <div class="table-actions" style="justify-content:flex-end;">
+                <button class="action-icon-btn view-btn" data-id="${msg.id}" title="View Message">
+                  👁️ View
+                </button>
+                <a href="mailto:${encodeURIComponent(msg.email)}?subject=${encodeURIComponent('Re: Portfolio Inquiry')}&body=${encodeURIComponent('\n\n---\nOn ' + formatDate(msg.timestamp) + ', ' + msg.name + ' wrote:\n' + msg.message)}" class="action-icon-btn reply-btn" data-id="${msg.id}" title="Reply via Email" target="_blank" rel="noopener noreferrer">
+                  ✉️ Reply
+                </a>
+                <button class="action-icon-btn delete-btn" data-id="${msg.id}" title="Delete Message" style="color:var(--danger);">
+                  🗑️
+                </button>
+              </div>
+            </td>
+          `;
+
+          // Event Listeners for row actions
+          tr.querySelector('.msg-preview').addEventListener('click', () => openMessageModal(msg.id));
+          tr.querySelector('.view-btn').addEventListener('click', () => openMessageModal(msg.id));
+          tr.querySelector('.reply-btn').addEventListener('click', () => {
+            msg.status = 'replied';
+            saveMessages();
+            renderDashboard();
+          });
+          tr.querySelector('.delete-btn').addEventListener('click', () => {
+            if (confirm(`Delete inquiry from ${msg.name}?`)) {
+              currentMessages = currentMessages.filter(m => m.id !== msg.id);
+              saveMessages();
+              renderDashboard();
+            }
+          });
+
+          messagesTbody.appendChild(tr);
+        });
+      }
+
+      searchInput.addEventListener('input', renderDashboard);
+      filterStatus.addEventListener('change', renderDashboard);
+
+      /* ------------------------------------------------------------------------
+         View Modal Logic
+         ------------------------------------------------------------------------ */
+      const viewModal = document.getElementById('view-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const modalSenderName = document.getElementById('modal-sender-name');
+      const modalSenderFullname = document.getElementById('modal-sender-fullname');
+      const modalSenderEmail = document.getElementById('modal-sender-email');
+      const modalTimestamp = document.getElementById('modal-timestamp');
+      const modalMessageBody = document.getElementById('modal-message-body');
+      const modalStatusBadge = document.getElementById('modal-status-badge');
+      const modalToggleStatusBtn = document.getElementById('modal-toggle-status-btn');
+      const modalReplyBtn = document.getElementById('modal-reply-btn');
+
+      function openMessageModal(id) {
+        const msg = currentMessages.find(m => m.id === id);
+        if (!msg) return;
+        activeModalMessageId = id;
+
+        // Auto mark as read on view
+        if (msg.status === 'unread') {
+          msg.status = 'read';
+          saveMessages();
+        }
+
+        modalSenderName.textContent = msg.name;
+        modalSenderFullname.textContent = msg.name;
+        modalSenderEmail.textContent = msg.email;
+        modalTimestamp.textContent = formatDate(msg.timestamp);
+        modalMessageBody.textContent = msg.message;
+
+        const statusClass = msg.status === 'unread' ? 'status-unread' : (msg.status === 'replied' ? 'status-replied' : 'status-read');
+        modalStatusBadge.className = `status-badge ${statusClass}`;
+        modalStatusBadge.textContent = msg.status.toUpperCase();
+
+        modalReplyBtn.href = `mailto:${encodeURIComponent(msg.email)}?subject=${encodeURIComponent('Re: Portfolio Inquiry')}&body=${encodeURIComponent('\n\n---\nOn ' + formatDate(msg.timestamp) + ', ' + msg.name + ' wrote:\n' + msg.message)}`;
+
+        viewModal.style.display = 'flex';
+        renderDashboard();
+      }
+
+      closeModalBtn.addEventListener('click', () => {
+        viewModal.style.display = 'none';
+        activeModalMessageId = null;
+      });
+
+      viewModal.addEventListener('click', (e) => {
+        if (e.target === viewModal) {
+          viewModal.style.display = 'none';
+          activeModalMessageId = null;
+        }
+      });
+
+      modalToggleStatusBtn.addEventListener('click', () => {
+        if (!activeModalMessageId) return;
+        const msg = currentMessages.find(m => m.id === activeModalMessageId);
+        if (!msg) return;
+        msg.status = msg.status === 'read' ? 'unread' : 'read';
+        saveMessages();
+        openMessageModal(msg.id);
+      });
+
+      /* ------------------------------------------------------------------------
+         Export to Excel / CSV (.csv with UTF-8 BOM)
+         ------------------------------------------------------------------------ */
+      const exportBtn = document.getElementById('export-excel-btn');
+      exportBtn.addEventListener('click', function () {
+        if (currentMessages.length === 0) {
+          alert('No inquiries recorded to export.');
+          return;
+        }
+
+        // CSV Header
+        const headers = ['Timestamp', 'Full Name', 'Email Address', 'Status', 'Message'];
+        const csvRows = [headers.join(',')];
+
+        currentMessages.forEach(m => {
+          const cleanName = `"${(m.name || '').replace(/"/g, '""')}"`;
+          const cleanEmail = `"${(m.email || '').replace(/"/g, '""')}"`;
+          const cleanStatus = `"${(m.status || '').replace(/"/g, '""')}"`;
+          const cleanMsg = `"${(m.message || '').replace(/"/g, '""').replace(/\r?\n/g, ' ')}"`;
+          const cleanDate = `"${formatDate(m.timestamp).replace(/"/g, '""')}"`;
+          csvRows.push([cleanDate, cleanName, cleanEmail, cleanStatus, cleanMsg].join(','));
+        });
+
+        const csvContent = '\uFEFF' + csvRows.join('\r\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `contact_messages_${new Date().toISOString().slice(0, 10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+
+      /* ------------------------------------------------------------------------
+         Simulate Test Message (For Verification)
+         ------------------------------------------------------------------------ */
+      const addTestBtn = document.getElementById('add-test-btn');
+      addTestBtn.addEventListener('click', function () {
+        const testNames = ['Aarav Sharma', 'Priya Mehta', 'Rohan Verma', 'Ananya Patel'];
+        const testCompanies = ['FinScale India', 'Apex AI Labs', 'SecureFlow', 'CyberNova'];
+        const randomName = testNames[Math.floor(Math.random() * testNames.length)];
+        const randomCompany = testCompanies[Math.floor(Math.random() * testCompanies.length)];
+
+        const testMsg = {
+          id: 'msg_' + Date.now(),
+          timestamp: new Date().toISOString(),
+          name: randomName,
+          email: `${randomName.toLowerCase().replace(' ', '.')}@${randomCompany.toLowerCase().replace(' ', '')}.com`,
+          message: `Inquiry regarding AI automation retainers and application security vulnerability assessment for ${randomCompany}. Please get in touch!`,
+          status: 'unread'
+        };
+
+        currentMessages.unshift(testMsg);
+        saveMessages();
+        renderDashboard();
+      });
+
+      /* ------------------------------------------------------------------------
+         Clear All Messages
+         ------------------------------------------------------------------------ */
+      const clearAllBtn = document.getElementById('clear-all-btn');
+      clearAllBtn.addEventListener('click', function () {
+        if (confirm('Are you sure you want to clear all message logs? This cannot be undone.')) {
+          currentMessages = [];
+          saveMessages();
+          renderDashboard();
+        }
+      });
+
+      /* ------------------------------------------------------------------------
+         Theme Switcher
+         ------------------------------------------------------------------------ */
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+
+      function updateThemeUI(theme) {
+        if (theme === 'light') {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = 'Dark';
+        } else {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = 'Light';
+        }
+      }
+
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateThemeUI(initialTheme);
+
+      themeToggle.addEventListener('click', function () {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('portfolio-theme', next);
+        updateThemeUI(next);
+      });
+
+      // Init on page load
+      checkSession();
+    })();
+  </script>
+</body>
+</html>

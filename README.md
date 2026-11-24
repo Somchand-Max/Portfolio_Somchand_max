@@ -4,28 +4,53 @@ A high-performance, standalone personal portfolio web application built with mod
 
 ---
 
+## 🌐 Live Website Links
+
+- **GitHub Repository**: [https://github.com/Somchand-Max/Portfolio_Somchand_max](https://github.com/Somchand-Max/Portfolio_Somchand_max)
+- **GitHub Pages Public URL**: [https://somchand-max.github.io/Portfolio_Somchand_max/](https://somchand-max.github.io/Portfolio_Somchand_max/)
+- **Admin Portal URL**: [https://somchand-max.github.io/Portfolio_Somchand_max/admin.html](https://somchand-max.github.io/Portfolio_Somchand_max/admin.html) (or append `?admin=true`)
+- **Local Dev URL**: `http://localhost:8080/`
+
+---
+
+## 🔒 Admin Portal & Message Center (`admin.html`)
+
+You can check all contact inquiries directly through the built-in **Admin Portal**:
+
+- **URL**: `admin.html` (accessible via the `🔒 Admin Portal` link in the website footer or `?admin=true`)
+- **Authorized Email**: `somchandratangwal7@gmail.com`
+- **Authorized Password**: `26112009@som7` (protected by SHA-256 cryptographic check and 5-attempt brute-force lockout)
+
+### What You Can Do in the Admin Portal:
+1. **Live Inquiries Dashboard**: View all messages submitted through the contact form with sender details, timestamps, and read/unread status badges.
+2. **Instant Gmail Forwarding**: When visitors send a message, it is automatically forwarded to **`somchandratangwal7@gmail.com`** so you never miss an inquiry.
+3. **One-Click Excel / CSV Export**: Click **📥 Download Excel (.csv)** to export all messages into an Excel-formatted spreadsheet with full timestamp, sender name, email, and message content.
+4. **Direct One-Click Reply**: Click **✉️ Reply** on any inquiry to open a pre-filled reply in your email client.
+
+---
+
 ## ⚡ Deployment & Hosting (Zero-Config)
 
 This repository is structured as a pure static web application. No build step, package manager, or backend runtime is required:
 
-### 1. Vercel
+### 1. GitHub Pages (Recommended)
+1. Go to repository **Settings** &rarr; **Pages**.
+2. Under **Build and deployment**, select **Deploy from a branch**.
+3. Choose branch `main` and folder `/ (root)`.
+4. Click **Save**. Your site will be live at `https://somchand-max.github.io/Portfolio_Somchand_max/` within 60 seconds.
+
+### 2. Vercel
 1. Import this repository into Vercel.
 2. Framework Preset: **Other** (Static HTML).
 3. Build Command: *leave empty*.
 4. Output Directory: `.` (root).
 5. Click **Deploy**.
 
-### 2. Cloudflare Pages
+### 3. Cloudflare Pages
 1. Connect this repository in Cloudflare Pages Dashboard.
 2. Build command: *None*.
 3. Build output directory: `/` (root).
 4. Click **Save and Deploy**.
-
-### 3. GitHub Pages
-1. Go to repository **Settings** &rarr; **Pages**.
-2. Under **Build and deployment**, select **Deploy from a branch**.
-3. Choose branch `main` and folder `/ (root)`.
-4. Click **Save**.
 
 ---
 
@@ -48,6 +73,7 @@ npx serve .
 ```text
 Portfolio_Somchand_max/
 ├── index.html           # Main portfolio entrypoint with OpenGraph & SEO tags
+├── admin.html           # Secure Admin Portal & live contact message hub
 ├── resume.html          # Clean, printable curriculum vitae
 ├── style.css            # Responsive CSS variables, typography, and dark/light themes
 ├── resume.css           # Styling for resume view

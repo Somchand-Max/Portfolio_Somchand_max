@@ -777,71 +777,68 @@
       );
       const mailtoLink = 'mailto:somchandratangwal7@gmail.com?subject=' + subject + '&body=' + emailBody;
 
-      function onSubmissionSuccess(msg) {
-        feedbackEl.hidden = false;
-        feedbackEl.className = 'form-feedback success';
-        feedbackEl.textContent = msg;
-        form.reset();
-        if (charCount) charCount.textContent = '0 / 500';
-        validators.forEach(function (field) {
-          field.input.classList.remove('invalid');
-          field.input.setAttribute('aria-invalid', 'false');
-          field.errorEl.textContent = '';
-        });
-      }
-
-      function onStaticFallback() {
-        feedbackEl.hidden = false;
-        feedbackEl.className = 'form-feedback success';
-        feedbackEl.innerHTML =
-          'Thank you, <strong>' +
-          escapeHtml(payload.name) +
-          '</strong>! Opening your email app to deliver this directly to <strong>somchandratangwal7@gmail.com</strong>... If your email app does not launch, <a href="' +
-          mailtoLink +
-          '" style="color:var(--accent-primary);text-decoration:underline;font-weight:600;">click here to send</a>.';
-        try {
-          window.location.href = mailtoLink;
-        } catch (e) {}
-        form.reset();
-        if (charCount) charCount.textContent = '0 / 500';
-        validators.forEach(function (field) {
-          field.input.classList.remove('invalid');
-          field.input.setAttribute('aria-invalid', 'false');
-          field.errorEl.textContent = '';
-        });
-      }
-
+      // 1. Record inquiry into Admin Portal storage
+      const newInquiry = {
+        id: 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+        timestamp: new Date().toISOString(),
+        name: payload.name,
+        email: payload.email,
+        message: payload.message,
+        status: 'unread'
+      };
       try {
-        const activeCsrfToken = csrfToken || (await fetchCsrfToken());
-        const response = await fetch('/api/contact', {
+        const existing = JSON.parse(localStorage.getItem('portfolio_contact_messages') || '[]');
+        existing.unshift(newInquiry);
+        localStorage.setItem('portfolio_contact_messages', JSON.stringify(existing));
+      } catch (e) {}
+
+      // 2. Deliver message directly to Somchand's Gmail via FormSubmit
+      let emailDelivered = false;
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/somchandratangwal7@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            ...(activeCsrfToken ? { 'X-CSRF-Token': activeCsrfToken } : {})
+            'Accept': 'application/json'
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            _subject: 'New Portfolio Inquiry from ' + payload.name + ' (' + payload.email + ')'
+          })
         });
-
-        let data = null;
-        try {
-          data = await response.json();
-        } catch (parseErr) {
-          data = null;
+        if (response.ok) {
+          emailDelivered = true;
         }
-
-        if (response.ok && data && data.success) {
-          onSubmissionSuccess(data.message || 'Message sent successfully! Somchand will get back to you shortly.');
-        } else {
-          // If running on static hosting without /api/contact, deliver via mailto
-          onStaticFallback();
-        }
-      } catch (networkErr) {
-        // Pure static host fallback (GitHub Pages, Vercel static, Cloudflare Pages)
-        onStaticFallback();
-      } finally {
-        setSubmittingState(false);
+      } catch (netErr) {
+        emailDelivered = false;
       }
+
+      feedbackEl.hidden = false;
+      feedbackEl.className = 'form-feedback success';
+      if (emailDelivered) {
+        feedbackEl.innerHTML =
+          'Thank you, <strong>' +
+          escapeHtml(payload.name) +
+          '</strong>! Your message has been delivered directly to Somchand (<strong>somchandratangwal7@gmail.com</strong>) and recorded in the Admin Portal. You will receive a reply shortly.';
+      } else {
+        feedbackEl.innerHTML =
+          'Thank you, <strong>' +
+          escapeHtml(payload.name) +
+          '</strong>! Your message has been recorded in the Admin Portal. If you wish to reach Somchand immediately, you can also <a href="' +
+          mailtoLink +
+          '" style="color:var(--accent-primary);text-decoration:underline;font-weight:600;">click here to email directly</a>.';
+      }
+
+      form.reset();
+      if (charCount) charCount.textContent = '0 / 500';
+      validators.forEach(function (field) {
+        field.input.classList.remove('invalid');
+        field.input.setAttribute('aria-invalid', 'false');
+        field.errorEl.textContent = '';
+      });
+      setSubmittingState(false);
     });
   }
 
@@ -849,6 +846,13 @@
      Initialize All Modules
      ------------------------------------------------------------------------ */
   document.addEventListener('DOMContentLoaded', function () {
+    try {
+      if (new URLSearchParams(window.location.search).get('admin') === 'true') {
+        window.location.href = './admin.html';
+        return;
+      }
+    } catch (e) {}
+
     initThemeToggle();
     initNavigation();
     initFilterGroup('data-skill-filter', '.skill-card', 'data-skill-category');

@@ -554,7 +554,7 @@ def _is_admin_query_requested() -> bool:
 def main() -> None:
     """Configure page metadata and render public portfolio + Admin Portal."""
     st.set_page_config(
-        page_title="Somchand Ratangwal | Cybersecurity & AI Portfolio",
+        page_title="Somchand Ratangwal | AI Automation & Application Security Specialist",
         page_icon="🛡️",
         layout="wide",
         initial_sidebar_state="collapsed",

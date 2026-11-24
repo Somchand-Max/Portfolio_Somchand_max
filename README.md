@@ -1,6 +1,6 @@
 # Personal Portfolio Website — Somchand Ratangwal
 
-A responsive Personal Portfolio Website built with **HTML5**, **CSS3**, and **Vanilla JavaScript** showcasing cybersecurity & AI projects, verified certifications, and preparation for the **Joint IIT Madras & IIT Kanpur 4-Year Bachelor of Cybersecurity (B.Cyber.) 2027** program.
+A responsive Personal Portfolio Website built with **HTML5**, **CSS3**, and **Vanilla JavaScript** positioning Somchand Ratangwal as an **AI Automation & Application Security Specialist** offering contract and retainer services for startups in Mumbai and remotely.
 
 ## Features Implemented (11/11)
 

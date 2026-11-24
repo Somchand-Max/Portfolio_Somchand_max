@@ -518,6 +518,15 @@ textarea {
   margin-bottom: 1rem;
 }
 
+.hero-greeting-sub {
+  display: block;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
 .gradient-text {
   background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
@@ -1891,6 +1900,12 @@ textarea {
   .profile-frame {
     width: 176px;
     height: 176px;
+  }
+
+  .floating-pill {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.55rem;
+    max-width: calc(100vw - 32px);
   }
 
   .hero-metrics {

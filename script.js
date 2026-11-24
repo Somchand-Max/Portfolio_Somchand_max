@@ -16,7 +16,7 @@
       issuer: 'Columbia Engineering Executive Education • Columbia+',
       date: 'Completed: September 16, 2026',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/columbia-ai-cybersecurity-governance.jpg',
+      image: './assets/images/certificates/columbia-ai-cybersecurity-governance.jpg',
       alt: 'Columbia Engineering Certificate for AI Cybersecurity and Governance',
       description:
         'Successfully completed the Columbia+ / Columbia Engineering Executive Education course and passed the examination covering AI security risks, governance frameworks, and responsible enterprise deployment.'
@@ -26,7 +26,7 @@
       issuer: 'Harvard University • HarvardX (edX)',
       date: 'Issued: September 2026',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/harvardx-cs50-cybersecurity.jpg',
+      image: './assets/images/certificates/harvardx-cs50-cybersecurity.jpg',
       alt: 'HarvardX Verified Certificate for CS50 Introduction to Cybersecurity',
       description:
         'Verified HarvardX certificate instructed by Prof. David J. Malan covering securing accounts, data, systems, and software against real-world threats while balancing security and usability.'
@@ -36,7 +36,7 @@
       issuer: 'Harvard University • HarvardX (edX)',
       date: 'Issued: September 2026',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/harvardx-cs50-ai-python.jpg',
+      image: './assets/images/certificates/harvardx-cs50-ai-python.jpg',
       alt: 'HarvardX Verified Certificate for CS50 Introduction to Artificial Intelligence with Python',
       description:
         'Verified HarvardX certificate covering graph search algorithms, knowledge engineering, uncertainty modeling, optimization, machine learning, neural networks, and natural language processing in Python.'
@@ -46,7 +46,7 @@
       issuer: 'Harvard University • HarvardX (edX)',
       date: 'Issued: September 2026',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/harvardx-cs50-computer-science.jpg',
+      image: './assets/images/certificates/harvardx-cs50-computer-science.jpg',
       alt: 'HarvardX Verified Certificate for CS50 Introduction to Computer Science',
       description:
         'Verified HarvardX flagship computer science credential covering computational thinking, abstraction, algorithms, data structures, C, Python, SQL, HTML, CSS, and JavaScript.'
@@ -56,7 +56,7 @@
       issuer: 'Internshala Trainings & IITM Pravartak Technologies Foundation',
       date: 'Certified: July 11, 2026',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/internshala-iitm-cybersecurity-ai.jpg',
+      image: './assets/images/certificates/internshala-iitm-cybersecurity-ai.jpg',
       alt: 'Internshala Trainings and IITM Pravartak Certificate for Cyber Security with AI',
       description:
         'Completed 8-week online training in Basics of Information Security, Computer Networking, Web Development, Information Gathering, OWASP Top 10 VAPT, Automating VAPT, and Vulnerability Reporting. Scored 96% in the final assessment and recognized as a Top Performer.'
@@ -66,7 +66,7 @@
       issuer: 'Shaastra 2026 • IIT Madras',
       date: 'Conducted: January 2, 2026',
       credential: 'Certificate of Participation',
-      image: 'assets/images/certificates/iitm-shaastra-ethical-web-hacking.jpg',
+      image: './assets/images/certificates/iitm-shaastra-ethical-web-hacking.jpg',
       alt: 'Shaastra 2026 IIT Madras Certificate of Participation in Ethical Web Hacking',
       description:
         'Participated in the Ethical Web Hacking technical workshop conducted during Shaastra 2026 at Indian Institute of Technology Madras, exploring web application security testing and responsible disclosure practices.'
@@ -76,7 +76,7 @@
       issuer: 'Shaastra 2026 • IIT Madras',
       date: 'Conducted: January 3, 2026',
       credential: 'Certificate of Participation',
-      image: 'assets/images/certificates/iitm-shaastra-cloud-computing.jpg',
+      image: './assets/images/certificates/iitm-shaastra-cloud-computing.jpg',
       alt: 'Shaastra 2026 IIT Madras Certificate of Participation in Cloud Computing',
       description:
         'Participated in the Cloud Computing workshop conducted during Shaastra 2026 at IIT Madras, covering cloud deployment models, virtualization, and scalable infrastructure fundamentals.'
@@ -86,7 +86,7 @@
       issuer: 'HackerX',
       date: 'Granted: April 16, 2024',
       credential: 'Credential ID: Protected (Privacy Redacted)',
-      image: 'assets/images/certificates/hackerx-ethical-hacking.jpg',
+      image: './assets/images/certificates/hackerx-ethical-hacking.jpg',
       alt: 'HackerX Certificate of Achievement in Ethical Hacking and Cybersecurity',
       description:
         'Awarded Certificate of Achievement after completing all HackerX certification courses on Ethical Hacking & Cybersecurity and passing the domain assessment.'
@@ -96,7 +96,7 @@
       issuer: 'Curriculum Vitae',
       date: 'Current Profile (2026)',
       credential: 'B.Tech. CSE (2030) • Joint B.Cyber. 2027 Aspirant',
-      image: 'assets/images/resume-somchand.png',
+      image: './assets/images/resume-somchand.png',
       alt: 'Professional Resume of Somchand Ratangwal',
       description:
         'Updated one-page resume covering academic status (B.Tech. CSE Cybersecurity & AI in progress, Joint IITM & IITK B.Cyber. 2027 aspirant), AI Orchestration & Prompt Engineering, HTML5/CSS3, Python & SQLite (learning), projects (KAKIEBO & SHIVAY), 4+ years of financial markets exposure, and 8 verified certifications.'
@@ -107,7 +107,7 @@
     kakiebo: {
       title: 'KAKIEBO — Personal Budgeting App',
       category: 'Personal Project • Python & SQLite',
-      image: 'assets/images/projects/kakiebo-budget-app.svg',
+      image: './assets/images/projects/kakiebo-budget-app.svg',
       alt: 'KAKIEBO Personal Budgeting App Interface Preview',
       summary:
         'Inspired by the Japanese Kakeibo mindful budgeting method, KAKIEBO is a personal finance application designed to record income, categorize expenses, and enforce savings targets using local SQLite persistence.',
@@ -122,7 +122,7 @@
     shivay: {
       title: 'SHIVAY & Authorized Bug Bounty Practice',
       category: 'Security Toolset • Ethical Security',
-      image: 'assets/images/projects/shivay-security-toolkit.svg',
+      image: './assets/images/projects/shivay-security-toolkit.svg',
       alt: 'SHIVAY Security Toolset and Recon Dashboard Preview',
       summary:
         'SHIVAY is a personal security toolkit built to automate repetitive reconnaissance and web vulnerability checks during authorized bug bounty hunting, lab practice, and CTF competitions.',
@@ -137,7 +137,7 @@
     financial: {
       title: 'Financial Markets & Risk Compliance Workflow',
       category: 'Domain Experience • 4+ Years Exposure',
-      image: 'assets/images/projects/financial-analytics.svg',
+      image: './assets/images/projects/financial-analytics.svg',
       alt: 'Financial Markets Compliance and Risk Analytics Visual',
       summary:
         'Over 4 years of practical exposure working under a Chartered Accountant, focusing on stock market behavior, regulatory compliance workflows, risk modeling, and operational trading analytics.',
@@ -152,7 +152,7 @@
     portfolio: {
       title: 'Personal Portfolio Website',
       category: 'Frontend Engineering • HTML5 / CSS3 / JS',
-      image: 'assets/images/projects/portfolio-architecture.svg',
+      image: './assets/images/projects/portfolio-architecture.svg',
       alt: 'Responsive Personal Portfolio Website Architecture',
       summary:
         'A responsive personal digital profile built using pure HTML5, CSS3 design tokens, and vanilla JavaScript with zero external UI frameworks.',
@@ -635,6 +635,16 @@
     let isSubmitting = false;
     let csrfToken = '';
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     async function fetchCsrfToken() {
       try {
         const res = await fetch('/api/csrf-token', {
@@ -755,6 +765,52 @@
 
       setSubmittingState(true);
 
+      const subject = encodeURIComponent('Portfolio Inquiry from ' + payload.name);
+      const emailBody = encodeURIComponent(
+        'Hi Somchand,\n\n' +
+          payload.message +
+          '\n\n---\nSender: ' +
+          payload.name +
+          '\nEmail: ' +
+          payload.email +
+          '\nSent from Portfolio Website'
+      );
+      const mailtoLink = 'mailto:somchandratangwal7@gmail.com?subject=' + subject + '&body=' + emailBody;
+
+      function onSubmissionSuccess(msg) {
+        feedbackEl.hidden = false;
+        feedbackEl.className = 'form-feedback success';
+        feedbackEl.textContent = msg;
+        form.reset();
+        if (charCount) charCount.textContent = '0 / 500';
+        validators.forEach(function (field) {
+          field.input.classList.remove('invalid');
+          field.input.setAttribute('aria-invalid', 'false');
+          field.errorEl.textContent = '';
+        });
+      }
+
+      function onStaticFallback() {
+        feedbackEl.hidden = false;
+        feedbackEl.className = 'form-feedback success';
+        feedbackEl.innerHTML =
+          'Thank you, <strong>' +
+          escapeHtml(payload.name) +
+          '</strong>! Opening your email app to deliver this directly to <strong>somchandratangwal7@gmail.com</strong>... If your email app does not launch, <a href="' +
+          mailtoLink +
+          '" style="color:var(--accent-primary);text-decoration:underline;font-weight:600;">click here to send</a>.';
+        try {
+          window.location.href = mailtoLink;
+        } catch (e) {}
+        form.reset();
+        if (charCount) charCount.textContent = '0 / 500';
+        validators.forEach(function (field) {
+          field.input.classList.remove('invalid');
+          field.input.setAttribute('aria-invalid', 'false');
+          field.errorEl.textContent = '';
+        });
+      }
+
       try {
         const activeCsrfToken = csrfToken || (await fetchCsrfToken());
         const response = await fetch('/api/contact', {
@@ -762,7 +818,7 @@
           headers: {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-Token': activeCsrfToken
+            ...(activeCsrfToken ? { 'X-CSRF-Token': activeCsrfToken } : {})
           },
           body: JSON.stringify(payload)
         });
@@ -774,31 +830,15 @@
           data = null;
         }
 
-        if (!response.ok || !data || !data.success) {
-          const errorMessage =
-            (data && (data.error || data.message)) ||
-            'Unable to send message right now. Please make sure the local Python backend is running.';
-          feedbackEl.hidden = false;
-          feedbackEl.className = 'form-feedback error';
-          feedbackEl.textContent = errorMessage;
-          return;
+        if (response.ok && data && data.success) {
+          onSubmissionSuccess(data.message || 'Message sent successfully! Somchand will get back to you shortly.');
+        } else {
+          // If running on static hosting without /api/contact, deliver via mailto
+          onStaticFallback();
         }
-
-        feedbackEl.hidden = false;
-        feedbackEl.className = 'form-feedback success';
-        feedbackEl.textContent = 'Message sent successfully! Som will get back to you shortly.';
-
-        form.reset();
-        if (charCount) charCount.textContent = '0 / 500';
-        validators.forEach(function (field) {
-          field.input.classList.remove('invalid');
-          field.input.setAttribute('aria-invalid', 'false');
-          field.errorEl.textContent = '';
-        });
       } catch (networkErr) {
-        feedbackEl.hidden = false;
-        feedbackEl.className = 'form-feedback error';
-        feedbackEl.textContent = 'Network error: Unable to reach /api/contact. Please verify server.py is running on port 8080.';
+        // Pure static host fallback (GitHub Pages, Vercel static, Cloudflare Pages)
+        onStaticFallback();
       } finally {
         setSubmittingState(false);
       }

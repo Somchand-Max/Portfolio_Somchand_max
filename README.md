@@ -1,40 +1,60 @@
-# Personal Portfolio Website — Somchand Ratangwal
+# Somchand Ratangwal — AI Automation & Application Security Specialist
 
-A responsive Personal Portfolio Website built with **HTML5**, **CSS3**, and **Vanilla JavaScript** positioning Somchand Ratangwal as an **AI Automation & Application Security Specialist** offering contract and retainer services for startups in Mumbai and remotely.
+A high-performance, standalone personal portfolio web application built with modern **semantic HTML5**, **CSS3 Design Tokens**, and **Vanilla JavaScript** (ES6+). Zero server-side runtime dependencies, ready for instant, zero-config deployment on **Vercel**, **Cloudflare Pages**, and **GitHub Pages**.
 
-## Features Implemented (11/11)
+---
 
-1. **Home Section (`#home`)**: Prominent introduction, high-resolution sharpened circular profile portrait, welcome message, navigation CTA buttons, quick interactive resume viewer with zoom/pan controls, and key stats.
-2. **About Me Section (`#about`)**: Personal background, interests, hobbies, career goals, 4+ years of financial markets exposure, and areas of focus.
-3. **Education Section (`#education`)**: Academic timeline covering focused preparation for the Joint IIT Madras & IIT Kanpur B.Cyber. 2027 degree alongside verified HarvardX, Columbia+, and IIT Madras credentials.
-4. **Skills Section (`#skills`)**: Honest, filterable technical & non-technical skills across 9 cards — HTML5 & CSS3 (Known, AI-prompt accelerated), Python & SQLite (Learning), JavaScript (Conceptual / Beginner, AI-orchestrated), AI Orchestration & Prompt Engineering (90%, Core Superpower), Kali Linux / Parrot OS / Termux, Network Security & Nmap, Communication, Teamwork & Collaboration, and Financial & Risk Analytics.
-5. **Projects Section (`#projects`)**: Cards for **KAKIEBO**, **SHIVAY & Bug Bounty Practice**, **Financial Markets & Risk Compliance**, and this **Personal Portfolio Website**, complete with interactive detail modals.
-6. **Hobbies & Interests Section (`#hobbies`)**: Visual cards with custom icons covering CTF & Security Labs, Reading & Market Analysis, Photography & YouTube Vlogging (`@THEEVERTHINGS.7`), Music, Travelling, and Sports & Gaming (Football & Free Fire).
-7. **Achievements Section (`#achievements`)**: Interactive filterable gallery of all **8 verified certificates** (Columbia+, HarvardX CS50 x3, Internshala/IITM Pravartak 96% Top Performer, IIT Madras Shaastra x2, HackerX) with privacy-blurred QR codes/credential IDs and interactive zoom/pan lightbox inspection.
-8. **Contact Section (`#contact`)**: Email (with copy button), location, GitHub & LinkedIn links, plus a JavaScript-validated contact form (`#contact-form`) connected to `POST /api/contact` on `server.py` (with CSRF tokens, honeypot filtering, IP rate limiting, XSS escaping, and spreadsheet formula injection defense) that persists submissions safely into `data/contact_messages.xlsx` (`chmod 600`).
-9. **Dark Mode & Light Mode**: Accessible navbar toggle persisting theme preference in `localStorage`.
-10. **Interactive Navigation**: Sticky header, smooth scrolling, active section highlighting via `IntersectionObserver`, scroll progress bar, and mobile drawer menu.
-11. **Responsive Design**: Adaptive layout for desktops, laptops, tablets, and mobile phones.
+## ⚡ Deployment & Hosting (Zero-Config)
 
-## Project Structure
+This repository is structured as a pure static web application. No build step, package manager, or backend runtime is required:
+
+### 1. Vercel
+1. Import this repository into Vercel.
+2. Framework Preset: **Other** (Static HTML).
+3. Build Command: *leave empty*.
+4. Output Directory: `.` (root).
+5. Click **Deploy**.
+
+### 2. Cloudflare Pages
+1. Connect this repository in Cloudflare Pages Dashboard.
+2. Build command: *None*.
+3. Build output directory: `/` (root).
+4. Click **Save and Deploy**.
+
+### 3. GitHub Pages
+1. Go to repository **Settings** &rarr; **Pages**.
+2. Under **Build and deployment**, select **Deploy from a branch**.
+3. Choose branch `main` and folder `/ (root)`.
+4. Click **Save**.
+
+---
+
+## 🚀 Local Preview
+
+You can open `index.html` directly in any web browser, or serve it with any lightweight static file server:
+
+```bash
+# Using Python's built-in static HTTP module:
+python3 -m http.server 8080
+
+# Or using Node.js npx:
+npx serve .
+```
+
+---
+
+## 📁 Repository Structure
 
 ```text
-personal-portfolio-website/
-├── index.html
-├── resume.html
-├── server.py
-├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-├── css/
-│   ├── resume.css
-│   └── styles.css
-├── js/
-│   ├── script.js
-│   └── theme-init.js
-├── data/                   # Created locally at runtime (git-ignored, chmod 700/600)
-│   └── contact_messages.xlsx
+Portfolio_Somchand_max/
+├── index.html           # Main portfolio entrypoint with OpenGraph & SEO tags
+├── resume.html          # Clean, printable curriculum vitae
+├── style.css            # Responsive CSS variables, typography, and dark/light themes
+├── resume.css           # Styling for resume view
+├── script.js            # Theme switcher, scrollspy, modal controls, and contact validation
+├── theme-init.js        # Instant zero-flicker theme loader
+├── .gitignore           # Clean git ignore for OS metadata and temporary files
+├── README.md            # Project documentation and deployment guide
 └── assets/
     └── images/
         ├── profile.png
@@ -55,22 +75,13 @@ personal-portfolio-website/
             └── shivay-security-toolkit.svg
 ```
 
-## Run Locally
+---
 
-Install dependencies into the project virtual environment and start the hardened backend server (serves static files + `/api/csrf-token` + `/api/contact` on port 8080):
+## ✨ Features & Capabilities
 
-```bash
-python3 -m venv venv
-./venv/bin/pip install -r requirements.txt
-./venv/bin/python server.py
-```
-
-Then visit `http://localhost:8080`. Contact submissions are saved safely to `data/contact_messages.xlsx` (`chmod 600`, git-ignored).
-
-### Run Streamlit Cloud Wrapper (`app.py`)
-
-```bash
-./venv/bin/streamlit run app.py
-```
-
-Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` (or a PBKDF2 `ADMIN_PASSWORD_HASH`) in Streamlit Cloud Secrets (`App Settings -> Secrets`) or environment variables, then sign in via the sidebar **🔒 Admin Portal** or `?admin=true` to access the Admin Management Dashboard and download `data/contact_messages.xlsx`.
+1. **AI Automation & AppSec Positioning**: Clear value proposition tailored for startup retainers, AI workflow automation, and application security audits.
+2. **Interactive `whoami.sh` Terminal**: Terminal simulation highlighting core stack, security focus, and verified competencies.
+3. **Verified Credentials Lightbox**: Interactive pan/zoom modal inspector for all 8 verified credentials from Columbia Engineering, HarvardX, IIT Madras, and HackerX.
+4. **Persistent Dark / Light Mode**: Instant theme switching persisted across sessions via `localStorage` with system preference detection.
+5. **Client-Side Form Validation**: Real-time schema and length validation, honeypot bot defense, and fallback email client integration.
+6. **SEO & Social Share Cards**: Complete OpenGraph and Twitter card metadata for professional rendering on LinkedIn, WhatsApp, and social media.

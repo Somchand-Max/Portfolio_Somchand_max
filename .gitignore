@@ -1,17 +1,20 @@
+# Operating System files
 .DS_Store
 Thumbs.db
+
+# Logs and runtime caches
 *.log
-__pycache__/
-*.pyc
+*.tmp
+node_modules/
+
+# Local environments and data files
+*.env
+*.env*
+.streamlit/
+data/
 venv/
 .venv/
-*.env
-.env*
-.streamlit/secrets.toml
-data/*.xlsx
-data/*.csv
-data/*.lock
-*.tmp.xlsx
-contact_messages.xlsx
-contact_messages.csv
-.contact_messages.lock
+__pycache__/
+*.xlsx
+*.csv
+*.lock

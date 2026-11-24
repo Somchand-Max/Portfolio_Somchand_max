@@ -3,18 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Somchand Ratangwal — AI Automation &amp; Application Security Specialist based in Mumbai. Helping startups automate operational workflows with multi-stage AI pipelines and secure web &amp; LLM applications.">
   <title>Somchand Ratangwal | AI Automation &amp; Application Security Specialist</title>
+  <meta name="description" content="Portfolio of Somchand Ratangwal — AI Workflow Automation, VAPT, OWASP Top 10 Security Audits, and Python Scripting Specialist based in Mumbai.">
+  <meta name="author" content="Somchand Ratangwal">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0d1117">
+
+  <!-- OpenGraph Meta Tags (Social Media & Messaging Previews) -->
+  <meta property="og:title" content="Somchand Ratangwal | AI Automation &amp; Application Security Specialist">
+  <meta property="og:description" content="Portfolio of Somchand Ratangwal — AI Workflow Automation, VAPT, OWASP Top 10 Security Audits, and Python Scripting Specialist based in Mumbai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://somchand-max.github.io/Portfolio_Somchand_max/">
+  <meta property="og:image" content="./assets/images/profile.png">
+  <meta property="og:image:alt" content="Somchand Ratangwal — AI Automation &amp; Application Security Specialist">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Somchand Ratangwal | AI Automation &amp; Application Security Specialist">
+  <meta name="twitter:description" content="Portfolio of Somchand Ratangwal — AI Workflow Automation, VAPT, OWASP Top 10 Security Audits, and Python Scripting Specialist based in Mumbai.">
+  <meta name="twitter:image" content="./assets/images/profile.png">
+
+  <!-- Security & Privacy Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Google Fonts (with graceful system fallbacks) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="./style.css">
 
-  <!-- Prevent theme flash before first paint (external for strict CSP) -->
-  <script src="js/theme-init.js"></script>
+  <!-- Prevent theme flash before first paint (runs synchronously) -->
+  <script>
+    (function () {
+      'use strict';
+      try {
+        var saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -131,7 +164,7 @@
           <div class="profile-frame">
             <div class="profile-glow" aria-hidden="true"></div>
             <img
-              src="assets/images/profile.png"
+              src="./assets/images/profile.png"
               alt="Portrait of Somchand Ratangwal"
               class="profile-avatar"
               width="800"
@@ -519,7 +552,7 @@
         <div class="projects-grid">
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/images/projects/kakiebo-budget-app.svg" alt="KAKIEBO Personal Budgeting App preview" loading="lazy">
+              <img src="./assets/images/projects/kakiebo-budget-app.svg" alt="KAKIEBO Personal Budgeting App preview" loading="lazy">
               <span class="project-badge">Personal Project • Active</span>
             </div>
             <div class="project-body">
@@ -547,7 +580,7 @@
 
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/images/projects/shivay-security-toolkit.svg" alt="SHIVAY Security Toolset and Bug Bounty Practice preview" loading="lazy">
+              <img src="./assets/images/projects/shivay-security-toolkit.svg" alt="SHIVAY Security Toolset and Bug Bounty Practice preview" loading="lazy">
               <span class="project-badge">Security Tooling • Active</span>
             </div>
             <div class="project-body">
@@ -575,7 +608,7 @@
 
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/images/projects/financial-analytics.svg" alt="Financial Markets Compliance and Risk Analytics preview" loading="lazy">
+              <img src="./assets/images/projects/financial-analytics.svg" alt="Financial Markets Compliance and Risk Analytics preview" loading="lazy">
               <span class="project-badge">Domain Practice • 4+ Yrs</span>
             </div>
             <div class="project-body">
@@ -600,7 +633,7 @@
 
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/images/projects/portfolio-architecture.svg" alt="Personal Portfolio Website responsive preview" loading="lazy">
+              <img src="./assets/images/projects/portfolio-architecture.svg" alt="Personal Portfolio Website responsive preview" loading="lazy">
               <span class="project-badge">Web Development • 2026</span>
             </div>
             <div class="project-body">
@@ -726,7 +759,7 @@
           <!-- 1. Columbia+ AI Cybersecurity and Governance -->
           <article class="card cert-card" data-cert-category="ivy cyber">
             <button type="button" class="cert-thumb-btn" data-cert-id="columbia-ai-gov" aria-label="View Columbia Engineering AI Cybersecurity and Governance certificate">
-              <img src="assets/images/certificates/columbia-ai-cybersecurity-governance.jpg" alt="Columbia Engineering Executive Education Certificate for AI Cybersecurity and Governance awarded to Somchand Ratangwal" loading="lazy">
+              <img src="./assets/images/certificates/columbia-ai-cybersecurity-governance.jpg" alt="Columbia Engineering Executive Education Certificate for AI Cybersecurity and Governance awarded to Somchand Ratangwal" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -746,7 +779,7 @@
           <!-- 2. HarvardX CS50 Cybersecurity -->
           <article class="card cert-card" data-cert-category="ivy cyber">
             <button type="button" class="cert-thumb-btn" data-cert-id="cs50-cyber" aria-label="View HarvardX CS50 Introduction to Cybersecurity certificate">
-              <img src="assets/images/certificates/harvardx-cs50-cybersecurity.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Cybersecurity awarded to Somchand Ratangwal" loading="lazy">
+              <img src="./assets/images/certificates/harvardx-cs50-cybersecurity.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Cybersecurity awarded to Somchand Ratangwal" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -766,7 +799,7 @@
           <!-- 3. HarvardX CS50 AI with Python -->
           <article class="card cert-card" data-cert-category="ivy">
             <button type="button" class="cert-thumb-btn" data-cert-id="cs50-ai" aria-label="View HarvardX CS50 Introduction to AI with Python certificate">
-              <img src="assets/images/certificates/harvardx-cs50-ai-python.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Artificial Intelligence with Python awarded to Somchand Ratangwal" loading="lazy">
+              <img src="./assets/images/certificates/harvardx-cs50-ai-python.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Artificial Intelligence with Python awarded to Somchand Ratangwal" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -786,7 +819,7 @@
           <!-- 4. HarvardX CS50 Computer Science -->
           <article class="card cert-card" data-cert-category="ivy">
             <button type="button" class="cert-thumb-btn" data-cert-id="cs50-cs" aria-label="View HarvardX CS50 Introduction to Computer Science certificate">
-              <img src="assets/images/certificates/harvardx-cs50-computer-science.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Computer Science awarded to Somchand Ratangwal" loading="lazy">
+              <img src="./assets/images/certificates/harvardx-cs50-computer-science.jpg" alt="HarvardX Verified Certificate for CS50 Introduction to Computer Science awarded to Somchand Ratangwal" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -806,7 +839,7 @@
           <!-- 5. Internshala & IITM Pravartak Cyber Security with AI -->
           <article class="card cert-card" data-cert-category="cyber workshop">
             <button type="button" class="cert-thumb-btn" data-cert-id="internshala-iitm" aria-label="View Internshala and IITM Pravartak Cyber Security with AI certificate">
-              <img src="assets/images/certificates/internshala-iitm-cybersecurity-ai.jpg" alt="Internshala Trainings and IITM Pravartak Certificate of Training in Cyber Security with AI awarded to Somchand Ratangwal with 96 percent score" loading="lazy">
+              <img src="./assets/images/certificates/internshala-iitm-cybersecurity-ai.jpg" alt="Internshala Trainings and IITM Pravartak Certificate of Training in Cyber Security with AI awarded to Somchand Ratangwal with 96 percent score" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -826,7 +859,7 @@
           <!-- 6. Shaastra IIT Madras Ethical Web Hacking -->
           <article class="card cert-card" data-cert-category="cyber workshop">
             <button type="button" class="cert-thumb-btn" data-cert-id="shaastra-web" aria-label="View Shaastra IIT Madras Ethical Web Hacking certificate">
-              <img src="assets/images/certificates/iitm-shaastra-ethical-web-hacking.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Ethical Web Hacking awarded to Somchand Ratangwal" loading="lazy">
+              <img src="./assets/images/certificates/iitm-shaastra-ethical-web-hacking.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Ethical Web Hacking awarded to Somchand Ratangwal" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -846,7 +879,7 @@
           <!-- 7. Shaastra IIT Madras Cloud Computing -->
           <article class="card cert-card" data-cert-category="workshop">
             <button type="button" class="cert-thumb-btn" data-cert-id="shaastra-cloud" aria-label="View Shaastra IIT Madras Cloud Computing certificate">
-              <img src="assets/images/certificates/iitm-shaastra-cloud-computing.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Cloud Computing awarded to Somchand" loading="lazy">
+              <img src="./assets/images/certificates/iitm-shaastra-cloud-computing.jpg" alt="Shaastra 2026 IIT Madras Certificate of Participation in Cloud Computing awarded to Somchand" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -866,7 +899,7 @@
           <!-- 8. HackerX Ethical Hacking & Cybersecurity -->
           <article class="card cert-card" data-cert-category="cyber">
             <button type="button" class="cert-thumb-btn" data-cert-id="hackerx" aria-label="View HackerX Ethical Hacking and Cybersecurity certificate">
-              <img src="assets/images/certificates/hackerx-ethical-hacking.jpg" alt="HackerX Certificate of Achievement in Ethical Hacking and Cybersecurity awarded to Somchand" loading="lazy">
+              <img src="./assets/images/certificates/hackerx-ethical-hacking.jpg" alt="HackerX Certificate of Achievement in Ethical Hacking and Cybersecurity awarded to Somchand" loading="lazy">
               <span class="cert-zoom-hint">Click to Inspect</span>
             </button>
             <div class="cert-body">
@@ -1069,7 +1102,7 @@
           <div class="zoom-btn-group">
             <button type="button" class="zoom-btn" id="zoom-reset-btn">100% Reset</button>
             <button type="button" class="zoom-btn active" id="zoom-fit-btn">Fit Width</button>
-            <a href="resume.html" target="_blank" rel="noopener noreferrer" class="zoom-btn" id="open-printable-resume-link" hidden>Print / Save PDF</a>
+            <a href="./resume.html" target="_blank" rel="noopener noreferrer" class="zoom-btn" id="open-printable-resume-link" hidden>Print / Save PDF</a>
           </div>
         </div>
         <div class="modal-image-wrap modal-zoom-viewport" id="cert-zoom-viewport">
@@ -1115,6 +1148,6 @@
     </div>
   </div>
 
-  <script src="js/script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
